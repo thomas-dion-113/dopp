@@ -1,0 +1,14 @@
+create_pluvio:
+  path: /api/private/create_pluvio
+  controller: App\Controller\PluvioController::createPluvio
+  methods: POST
+
+pluvios:
+  path: /api/private/pluvios
+  controller: App\Controller\PluvioController::pluvios
+  methods: GET
+
+pluvio:
+  path: /api/private/pluvio/{id}
+  controller: App\Controller\PluvioController::pluvio
+  methods: GET

@@ -1,0 +1,49 @@
+.navbar .logo {
+    width: 269px;
+    height: auto;
+}
+
+nav .navbar-nav > li > a, nav .navbar-nav > li > div {
+    color: white !important;
+}
+
+nav .navbar-nav > li > a:hover, nav .navbar-nav > li > div.nav-link:hover {
+    opacity: 0.5;
+}
+
+.navbar .dropdown-item.logout {
+    cursor: pointer;
+}
+
+.navbar .nav-item {
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.dropdown-item {
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .navbar .nav-item {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar .logo {
+        width: 85px;
+    }
+}

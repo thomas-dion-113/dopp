@@ -1,0 +1,11 @@
+ul.items {
+    padding: 0;
+}
+
+li.item {
+    background-color: #E1E0E0;
+    list-style: none;
+    margin: 1em 0;
+    padding: 0.5em 1em 0.75em;
+    border-radius: 4px;
+}

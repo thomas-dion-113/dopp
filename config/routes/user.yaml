@@ -1,0 +1,4 @@
+edit_user:
+  path: /api/private/edit_user
+  controller: App\Controller\UserController::editUser
+  methods: POST

@@ -1,0 +1,12 @@
+react_with_params:
+    path: /{reactRouting1}/{reactRouting2}
+    controller: App\Controller\DefaultController::index
+
+auth:
+    resource: 'routes/auth.yaml'
+
+releve:
+    resource: 'routes/releve.yaml'
+
+pluvio:
+    resource: 'routes/pluvio.yaml'

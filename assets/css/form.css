@@ -1,0 +1,66 @@
+.container-form > div {
+    flex: 1;
+    background-color: #E1E0E0;
+    padding: 1.5em 3em;
+    border-radius: 4px;
+}
+
+.container-form h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form-group.error input {
+    border: 1px solid #dc3545;
+}
+
+.form-group.error #feedback {
+    color: #dc3545;
+}
+
+.form-group #map-field {
+    width: 100%;
+    height: 500px;
+}
+
+.form-group input[type=text] {
+    max-width: 400px;
+}
+
+/* DATE */
+
+.MuiFormControl-root {
+    display: initial !important;
+}
+
+.MuiInputBase-root {
+    display: initial !important;
+}
+
+.MuiOutlinedInput-root {
+    border-radius: initial !important;
+}
+
+.MuiOutlinedInput-input {
+    padding: .375rem .75rem !important;
+}
+
+.MuiInputBase-input {
+    height: calc(1.5em + .75rem + 2px) !important;
+    padding: .375rem .75rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #495057 !important;
+    background-color: #fff !important;;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    border-radius: .25rem !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    opacity: 0;
+}

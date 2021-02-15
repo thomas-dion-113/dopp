@@ -1,0 +1,34 @@
+api:
+  path: /api/private/token_check
+  controller: App\Controller\AuthController::tokenCheck
+
+gesdinet_jwt_refresh_token:
+  path:       /api/public/token/refresh
+  controller: gesdinet.jwtrefreshtoken::refresh
+
+register:
+  path: /api/public/register
+  controller: App\Controller\AuthController::register
+  methods: POST
+
+email_verify:
+  path: /api/public/register/verify/{token}
+  controller: App\Controller\AuthController::emailVerify
+  methods: GET
+  requirements:
+    token: '.*'
+
+request_reset_password:
+  path: /api/public/request_reset_password
+  controller: App\Controller\AuthController::requestResetPassword
+  methods: POST
+
+verify_reset_password:
+  path: /api/public/verify_reset_password/{token}
+  controller: App\Controller\AuthController::verifyResetPassword
+  methods: GET
+
+reset_password:
+  path: /api/public/reset_password
+  controller: App\Controller\AuthController::resetPassword
+  methods: POST

@@ -1,0 +1,15 @@
+.container {
+    margin: 5em auto;
+}
+
+.container.xs {
+    max-width: 500px;
+}
+
+.container.sm {
+    max-width: 700px;
+}
+
+.container.md {
+    max-width: 900px;
+}

@@ -1,0 +1,184 @@
+html.home, html.home body, html.home #root, html.home #root > div {
+    height: 100%;
+}
+
+html.home #root > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-map {
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+
+.container-map.loading {
+    display: flex;
+    align-items: center;
+}
+
+.container-loading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    height: 100%;
+}
+
+.container-map:not(.loading) .container-loading {
+    display: none !important;
+}
+
+#home-map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-map.loading #home-map {
+    opacity: 0.5;
+}
+
+.leaflet-pane.leaflet-overlay-pane {
+    opacity: 0.7;
+}
+
+.leaflet-popup-content p {
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.info, .settings {
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.info {
+    background: #ffffff;
+    padding: 6px 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.settings {
+    z-index: 10001;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings .current-setting {
+    padding: 0.65em 2.3em 0.65em 2.4em;
+    background-size: 27px, 17px !important;
+    cursor: pointer;
+    background: url("../images/calendar.svg") no-repeat scroll 0.5em 50%, url("../images/down-arrow-simple.svg") no-repeat scroll right 0.8em center #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    transition: all ease-in-out 150ms;
+}
+
+.settings .settings-choices {
+    transform: scaleY(0);
+    transform-origin: top;
+    display: flex;
+    flex-direction: column;
+    transition: all ease-in-out 150ms;
+}
+
+.settings .settings-choices.active {
+    transform: scaleY(1);
+    transition: all ease 300ms;
+}
+
+.settings .settings-choices span {
+    padding: 0.5em;
+    background: #ffffff;
+    transition: all ease-in-out 150ms;
+}
+
+.settings .settings-choices span {
+    cursor: pointer;
+}
+
+.settings .current-setting:hover,
+.settings .settings-choices span.active:not(.disable),
+.settings .settings-choices span:hover:not(.disable) {
+    background-color: #007bff !important;
+    transition: all ease 300ms;
+}
+
+.settings .settings-choices span.active,
+.settings .settings-choices span.disable {
+    background-color: #a5a5a5;
+    cursor: initial;
+}
+
+.settings .settings-choices #container-custom-field {
+    transform: scaleY(0);
+    transform-origin: top;
+    padding: 1em;
+    background-color: #ffffff;
+    transition: all ease-in-out 150ms;
+}
+
+.settings .settings-choices #container-custom-field input {
+    max-width: 200px;
+}
+
+.settings .settings-choices #container-custom-field.active {
+    transform: scaleY(1);
+    transition: all ease 300ms;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+    border-color: #999999;
+    cursor: pointer;
+}
+
+.legend .content, .legend .title {
+    display: none;
+}
+
+.legend .content.active, .legend .title.active {
+    display: block;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+@media (max-width: 576px) {
+    .leaflet-control-zoom {
+        display: none;
+    }
+
+    .leaflet-bottom.leaflet-right {
+        max-width: 16em;
+    }
+
+    .leaflet-top.leaflet-left {
+        right: 0;
+    }
+
+    .settings {
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    .settings .current-setting {
+        border-radius: 0;
+    }
+}

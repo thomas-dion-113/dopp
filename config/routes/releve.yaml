@@ -1,0 +1,39 @@
+create_releve:
+  path: /api/private/create_releve
+  controller: App\Controller\ReleveController::createReleve
+  methods: POST
+
+edit_releve:
+  path: /api/private/edit_releve
+  controller: App\Controller\ReleveController::editReleve
+  methods: POST
+
+releves:
+  path: /api/private/releves
+  controller: App\Controller\ReleveController::releves
+  methods: GET
+
+public_releves:
+  path: /api/public/releves/{settings}
+  controller: App\Controller\ReleveController::publicReleves
+  methods: GET
+
+public_releves_custom:
+  path: /api/public/releves/custom/{dateFrom}/{dateTo}
+  controller: App\Controller\ReleveController::publicRelevesCustom
+  methods: GET
+
+releve:
+  path: /api/private/releve/{id}
+  controller: App\Controller\ReleveController::releve
+  methods: GET
+
+last_releve:
+  path: /api/private/last_releve/{pluvioId}
+  controller: App\Controller\ReleveController::lastReleve
+  methods: GET
+
+get_releves_by_dates:
+  path: /api/private/releves_by_dates/{from}/{to}
+  controller: App\Controller\ReleveController::getRelevesbyDates
+  methods: GET
