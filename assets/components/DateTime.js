@@ -12,8 +12,6 @@ class LocalizedUtils extends DateFnsUtils {
 }
 
 const DateTime = ({ field, form, ...other }) => {
-    const currentError = form.errors[field.name];
-
     useEffect(() => {
         document.querySelector('.MuiInputBase-input.MuiOutlinedInput-input').classList.add('form-control');
     });
@@ -28,14 +26,6 @@ const DateTime = ({ field, form, ...other }) => {
                 cancelLabel="Annuler"
                 name={field.name}
                 value={field.value}
-                helperText={currentError}
-                error={Boolean(currentError)}
-                onError={error => {
-                    // handle as a side effect
-                    if (error !== currentError) {
-                        form.setFieldError(field.name, error);
-                    }
-                }}
                 // if you are using custom validation schema you probably want to pass `true` as third argument
                 onChange={date => form.setFieldValue(field.name, date, true)}
                 {...other}

@@ -1,0 +1,22 @@
+{
+  "short_name": "DOPP",
+  "name": "DOPP",
+  "icons": [
+    {
+      "src": "/static_images/dopp_white_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static_images/dopp_white_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=web_app_manifest",
+  "background_color": "#007bff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#007bff",
+  "description": "Données ouvertes de pluviométrie pour les paludiers"
+}

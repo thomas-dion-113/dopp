@@ -10,8 +10,6 @@ class AccountForm extends Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props);
-
         this.state = {
             loading: true,
             requestLoading: false,
@@ -41,7 +39,7 @@ class AccountForm extends Component {
             .then(async res => {
                 if (res.status === 200) {
                     await this.props.accountFormCallbackFunction();
-                    this.props.history.replace('/');
+                    this.props.history.replace('/releves');
                 } else if (res.status === 400) {
                     let data = await res.json();
                     let errors = {};
@@ -83,7 +81,7 @@ class AccountForm extends Component {
                         {props => (
                             <div className="container container-form xs center">
                                 <div>
-                                    <h1>Inscription</h1>
+                                    <h1>Mon compte</h1>
                                     <form onSubmit={props.handleSubmit} noValidate="noValidate">
                                         <div className={props.errors.name && props.touched.name
                                             ? "form-group error"

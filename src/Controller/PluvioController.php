@@ -56,7 +56,7 @@ class PluvioController extends AbstractController
             'user' => $user,
         ]);
 
-        return new JsonResponse(json_encode($pluvios), 200);
+        return new JsonResponse($pluvios, 200);
     }
 
     public function pluvio(int $id, Request $request)

@@ -11,7 +11,7 @@ class LoginPage extends Component {
         super(props);
 
         const {location} = this.props;
-        this.from = location.state ? location.state.from.pathname : "/";
+        this.from = location.state ? location.state.from.pathname : "/releves";
 
         this.state = {
             loading: true,

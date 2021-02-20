@@ -28,7 +28,7 @@ class ChoosePluvio extends Component {
                 let data = await res.json();
                 this.setState({
                     loading: false,
-                    pluvios: JSON.parse(data)
+                    pluvios: data
                 });
             } else {
                 this.props.history.replace('/404');
@@ -54,7 +54,7 @@ class ChoosePluvio extends Component {
                                 {this.state.pluvios.map((pluvio) => {
                                     return (
                                         <li key={pluvio.id} className="item">
-                                            <div className="d-flex justify-content-between align-items-center">
+                                            <div className="container-horizontal">
                                                 <h2>{pluvio.name}</h2>
                                                 <Link to={"/ajouter-un-releve/" + pluvio.id}>
                                                     <button className="btn btn-primary">Sélectionner
@@ -69,7 +69,7 @@ class ChoosePluvio extends Component {
                             <>
                                 <p className="text-center mt-5">Vous n'avez pas de pluvio</p>
                                 <Link to={"/ajouter-un-pluvio"} className="d-flex justify-content-center">
-                                    <button className="btn btn-primary">Cliquez ici pour en ajouter un
+                                    <button className="btn btn-primary">Cliquez ici pour ajouter un pluvio
                                     </button>
                                 </Link>
                             </>

@@ -193,22 +193,6 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getReleves()
-    {
-        return $this->releves;
-    }
-
-    /**
-     * @param mixed $releves
-     */
-    public function setReleves($releves): void
-    {
-        $this->releves = $releves;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPluvios()
     {
         return $this->pluvios;

@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import yupLocale from './yupLocales';
 import DateTime from "./DateTime";
 import setInputFilter from "./inputFilter";
+import { isBefore } from 'date-fns';
 
 Yup.setLocale(yupLocale);
 
@@ -200,7 +201,19 @@ class ReleveForm extends Component {
                                 dateTime: Yup.date()
                                     .required(),
                                 previousDateTime: Yup.date()
-                                    .required(),
+                                    .required()
+                                    .test(
+                                        'test-endDate',
+                                        'La date du précédent relevé doit être avant celle du relevé',
+                                        function checkEnd(
+                                            previousDateTime
+                                        ) {
+                                            const {dateTime} = this.parent;
+                                            if (isBefore(previousDateTime, dateTime)) {
+                                                return true;
+                                            }
+                                            return false;
+                                        }),
                                 precipitations: Yup.string()
                                     .required()
                                     .test(
@@ -213,7 +226,8 @@ class ReleveForm extends Component {
                     >
                         {props => (
                             <div className="container container-form xs">
-                                <h1>{this.state.edit ? 'Modifier le' : 'Ajouter un'} relevé pour le pluvio : {this.state.pluvio.name}</h1>
+                                <h1>{this.state.edit ? 'Modifier le' : 'Ajouter un'} relevé pour le pluvio
+                                    : {this.state.pluvio.name}</h1>
                                 <div>
                                     <form onSubmit={props.handleSubmit} noValidate="noValidate">
                                         <div className={props.errors.dateTime && props.touched.dateTime

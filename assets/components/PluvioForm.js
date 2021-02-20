@@ -4,6 +4,7 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import yupLocale from './yupLocales'
 import MapField from "./MapField";
+import MapFieldMobile from "./MapFieldMobile";
 
 Yup.setLocale(yupLocale);
 
@@ -68,7 +69,7 @@ class PluvioForm extends Component {
                                 <div className={props.errors.name && props.touched.name
                                     ? "form-group error"
                                     : "form-group"}>
-                                    <label htmlFor="name">Nom du pluvio</label>
+                                    <label htmlFor="name">Nom du lieu</label>
                                     <input
                                         id="name"
                                         type="text"
@@ -84,7 +85,6 @@ class PluvioForm extends Component {
                                 <div className={props.errors.coordinates && props.touched.coordinates
                                     ? "form-group error"
                                     : "form-group"}>
-                                    <label>Cliquez sur la carte pour placer votre pluvio</label>
                                     <input
                                         id="coordinates"
                                         type="hidden"
@@ -94,8 +94,13 @@ class PluvioForm extends Component {
                                         value={props.values.coordinates}
                                         className="form-control"
                                     />
-
-                                    <MapField formik={props}/>
+                                    <div className="container-map-desktop d-none d-md-block">
+                                        <label>Cliquez sur la carte pour placer votre pluvio</label>
+                                        <MapField formik={props}/>
+                                    </div>
+                                    <div className="container-map-mobile d-block d-md-none">
+                                        <MapFieldMobile formik={props}/>
+                                    </div>
                                     {props.errors.coordinates && props.touched.coordinates &&
                                     <div id="feedback">{props.errors.coordinates}</div>}
                                 </div>

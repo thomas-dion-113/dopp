@@ -1,0 +1,19 @@
+public_average:
+  path: /api/public/stats/average
+  controller: App\Controller\StatsController::publicAverage
+  methods: GET
+
+private_average:
+  path: /api/private/stats/average
+  controller: App\Controller\StatsController::privateAverage
+  methods: GET
+
+public_average_custom_dates:
+  path: /api/public/stats/average/custom_dates/{dateFrom}/{dateTo}
+  controller: App\Controller\StatsController::publicAverageCustomDates
+  methods: GET
+
+private_average_custom_dates:
+  path: /api/private/stats/average/custom_dates/{dateFrom}/{dateTo}
+  controller: App\Controller\StatsController::privateAverageCustomDates
+  methods: GET

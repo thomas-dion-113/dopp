@@ -35,3 +35,9 @@ doctrine:
                 y: CrEOF\Spatial\ORM\Query\AST\Functions\MySql\Y
             string_functions:
                 group_concat: DoctrineExtensions\Query\Mysql\GroupConcat
+                cast: DoctrineExtensions\Query\Mysql\Cast
+                date: DoctrineExtensions\Query\Mysql\Date
+                day: DoctrineExtensions\Query\Mysql\Day
+                dateadd: DoctrineExtensions\Query\Mysql\DateAdd
+                datediff: DoctrineExtensions\Query\Mysql\DateDiff
+                convert_tz: DoctrineExtensions\Query\Mysql\ConvertTz

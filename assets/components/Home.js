@@ -78,6 +78,10 @@ class Home extends Component {
                 firstDay: 1
             },
             maxDate: new Date()
+        }).on('show.daterangepicker', function (ev, picker) {
+            document.querySelector('.daterangepicker').classList.add('active');
+        }).on('hide.daterangepicker', function (ev, picker) {
+            document.querySelector('.daterangepicker').classList.remove('active');
         }).on('apply.daterangepicker', function (ev, picker) {
             let datesFr = picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY');
             this.customField.value = datesFr;
@@ -200,7 +204,7 @@ class Home extends Component {
             `<span id="last_5_d">5 derniers jours</span>` +
             `<span id="last_7_d">7 derniers jours</span>` +
             `<span id="custom">Dates personnalisées</span>` +
-            `<div id="container-custom-field"><input name="custom-field" class="form-control"/></div>` +
+            `<div id="container-custom-field"><input placeholder="Dates" name="custom-field" class="form-control"/></div>` +
             `</div>`;
 
         return div;
@@ -215,6 +219,7 @@ class Home extends Component {
 
         let elem = L.DomUtil.get('settings');
         L.DomEvent.on(elem, 'dblclick', L.DomEvent.stopPropagation);
+        L.DomEvent.on(elem, 'mousewheel', L.DomEvent.stopPropagation);
 
         this.currentSetting.addEventListener(this.state.event, () => {
             this.currentSetting.classList.toggle('active');

@@ -215,27 +215,4 @@ class ReleveController extends AbstractController
             return new JsonResponse(null, 404);
         }
     }
-
-    public function getRelevesByDates($from,  $to)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $qb = $em->createQueryBuilder()
-            ->select('r')
-            ->from(Releve::class, 'r')
-            ->where('r.dateTime > :dateFrom AND r.dateTime < :dateTo')
-            ->setParameter('dateFrom', strtotime($from))
-            ->setParameter('dateTo', strtotime($to));
-
-        $releves = $qb->getQuery()->execute();
-
-        $response = new Response();
-
-        $response->headers->set('Content-Type', 'application/json');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-
-        $response->setContent(json_encode($releves));
-
-        return $response;
-    }
 }

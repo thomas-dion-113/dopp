@@ -1,0 +1,66 @@
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 80vh;
+    width: 80vw;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-container .no-data {
+    font-size: 2rem;
+}
+
+.container-input {
+    margin: 2em 0;
+}
+
+.container-input .container-input-close {
+    display: flex;
+}
+
+.container-input input[name="custom-dates"] {
+    max-width: 250px;
+}
+
+.container-input .close {
+    width: 30px;
+    height: auto;
+    margin-left: 0.5em;
+    transition: all ease-in-out 300ms;
+}
+
+.container-input .close:hover {
+    transition: all ease 600ms;
+    cursor: pointer;
+}
+
+.rotate {
+    display: none;
+    background-color: #000000;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.rotate img {
+    width: 40px;
+    height: auto;
+}
+
+.rotate span {
+    margin-left: 0.5em;
+}
+
+@media (max-width: 375px) {
+    .rotate {
+        display: flex;
+    }
+}

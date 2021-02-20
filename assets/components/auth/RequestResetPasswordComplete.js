@@ -6,7 +6,7 @@ class RequestResetPasswordComplete extends Component {
         return (
             <div className="container mt-5">
                 <h1>Réinitialisation de votre mot de passe</h1>
-                <p>Vous aller recevoir un email afin de réinitialiser votre mot de passe.</p>
+                <p>Vous allez recevoir un email afin de réinitialiser votre mot de passe.</p>
                 <Link to="/">Retourner à l'accueil</Link>
             </div>
         )

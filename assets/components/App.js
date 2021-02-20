@@ -25,6 +25,7 @@ import Releves from "./Releves";
 import ChoosePluvio from "./ChoosePluvio";
 import AccountForm from "./AccountForm";
 import MentionsLegales from "./MentionsLegales";
+import Offline from "./Offline";
 
 class App extends Component {
 
@@ -55,7 +56,6 @@ class App extends Component {
     }
 
     initNav() {
-        console.log(document.querySelector('nav'));
         let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
         navLinks.forEach(navLink => {
             navLink.addEventListener('touchend', () => {
@@ -112,6 +112,7 @@ class App extends Component {
 
         this.getUserFromToken().then(() => {
             this.props.history.replace(from);
+            this.initNav();
         });
     }
 
@@ -124,7 +125,11 @@ class App extends Component {
             user: null
         });
 
-        this.props.history.push("/")
+        this.props.history.push("/");
+
+        setTimeout(() => {
+            this.initNav();
+        }, 500);
     }
 
     render() {
@@ -207,13 +212,16 @@ class App extends Component {
                         </nav>
                         <Switch>
                             <Route path="/statistiques">
-                                <Statistiques/>
+                                <Statistiques token={this.state.token} user={this.state.user}/>
                             </Route>
                             <Route path="/mentions-legales">
                                 <MentionsLegales/>
                             </Route>
                             <Route path="/404">
                                 <Page404/>
+                            </Route>
+                            <Route path="/offline">
+                                <Offline/>
                             </Route>
                             <AnonymousRoute path="/login" user={this.state.user}>
                                 <LoginPage loginCallbackFunction={(values, from) => {

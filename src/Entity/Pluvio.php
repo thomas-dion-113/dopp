@@ -30,7 +30,7 @@ class Pluvio implements JsonSerializable
     private $coordinates;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="releves")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="pluvios")
      * @ORM\JoinColumn(nullable=false)
      */
     protected $user;

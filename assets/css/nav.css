@@ -42,7 +42,7 @@ nav .navbar-nav > li > a:hover, nav .navbar-nav > li > div.nav-link:hover {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
     .navbar .logo {
         width: 85px;
     }

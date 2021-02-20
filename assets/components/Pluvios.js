@@ -21,7 +21,7 @@ class Pluvios extends Component {
                 let data = await res.json();
                 this.setState({
                     loading: false,
-                    pluvios: JSON.parse(data)
+                    pluvios: data
                 });
             } else {
                 this.props.history.replace('/404');
@@ -38,7 +38,7 @@ class Pluvios extends Component {
                     </div>
                 ) : (
                     <>
-                        <div className="d-flex justify-content-between align-items-center">
+                        <div className="container-horizontal">
                             <h1>Mes pluvios</h1>
                             <Link to='/ajouter-un-pluvio'>
                                 <button className="btn btn-primary">Ajouter un pluvio</button>
@@ -50,12 +50,12 @@ class Pluvios extends Component {
                                     {this.state.pluvios.map((pluvio) => {
                                         return (
                                             <li key={pluvio.id} className="item">
-                                                <div className="d-flex justify-content-between align-items-center">
+                                                <div className="container-horizontal">
                                                     <h2>{pluvio.name}</h2>
                                                     <span>Nombre de relevés : {pluvio.nbReleves}</span>
                                                 </div>
                                                 <div
-                                                    className="d-flex justify-content-between align-items-center mt-3">
+                                                    className="container-horizontal mt-3">
                                                     <Link to={"/ajouter-un-releve/" + pluvio.id}>
                                                         <button className="btn btn-primary">Ajouter un relevé
                                                         </button>

@@ -56,7 +56,7 @@ class Releves extends Component {
                     </div>
                 ) : (
                     <>
-                        <div className="d-flex justify-content-between align-items-center">
+                        <div className="container-horizontal">
                             <h1>Mes relevés</h1>
                             <Link to='/ajouter-un-releve'>
                                 <button className="btn btn-primary">Ajouter un Relevé</button>
@@ -72,7 +72,7 @@ class Releves extends Component {
                                                 <p>Pluvio : {releve.pluvio.name}</p>
                                                 <p>Précipitations : {releve.precipitations}mm</p>
                                                 <div
-                                                    className="d-flex justify-content-between align-items-center mt-3">
+                                                    className="container-horizontal mt-3">
                                                     <Link to={"/modifier-un-releve/" + releve.id}>
                                                         <button className="btn btn-primary">Modifier
                                                         </button>

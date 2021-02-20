@@ -32,8 +32,3 @@ last_releve:
   path: /api/private/last_releve/{pluvioId}
   controller: App\Controller\ReleveController::lastReleve
   methods: GET
-
-get_releves_by_dates:
-  path: /api/private/releves_by_dates/{from}/{to}
-  controller: App\Controller\ReleveController::getRelevesbyDates
-  methods: GET

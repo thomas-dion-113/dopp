@@ -2,7 +2,7 @@
     <head></head>
 
     <body>
-        <img src="{{ email.image('@images/dopp-black-large-2.png') }}"/>
+        <img src="{{ email.image('@static_images/dopp-black-large-2.png') }}"/>
         <h1>Activez votre compte</h1>
         <p>Votre inscription a bien était prise en compte, il ne vous reste plus qu'à activer votre compte :</p>
         <a href="{{ url('email_verify', { 'token': registrationToken }) }}">Valider mon email</a>

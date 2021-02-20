@@ -51,6 +51,14 @@ html.home #root > div {
     font-size: 0.9rem;
 }
 
+.leaflet-container a.leaflet-popup-close-button {
+    padding: 6px 6px 0 0;
+    width: 21px;
+    height: 21px;
+    font: 30px/14px Tahoma, Verdana, sans-serif;
+    color: #000000;
+}
+
 .info, .settings {
     font: 14px/16px Arial, Helvetica, sans-serif;
     border-radius: 3px;
@@ -85,6 +93,7 @@ html.home #root > div {
 }
 
 .settings .settings-choices {
+    height: 0;
     transform: scaleY(0);
     transform-origin: top;
     display: flex;
@@ -165,12 +174,13 @@ html.home #root > div {
         display: none;
     }
 
-    .leaflet-bottom.leaflet-right {
+    #home-map .leaflet-bottom.leaflet-right {
         max-width: 16em;
     }
 
-    .leaflet-top.leaflet-left {
+    #home-map .leaflet-top.leaflet-left {
         right: 0;
+        z-index: 10002;
     }
 
     .settings {
@@ -178,7 +188,22 @@ html.home #root > div {
         width: 100%;
     }
 
+    .settings .current-setting,
+    .settings .settings-choices span {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
     .settings .current-setting {
         border-radius: 0;
+    }
+
+    .settings .settings-choices span {
+        padding: 1.25em 0.5em;
+        border-bottom: 1px solid grey;
+    }
+
+    .settings .settings-choices #container-custom-field input {
+        margin: auto;
     }
 }

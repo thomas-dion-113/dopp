@@ -18,11 +18,6 @@
     color: #dc3545;
 }
 
-.form-group #map-field {
-    width: 100%;
-    height: 500px;
-}
-
 .form-group input[type=text] {
     max-width: 400px;
 }
@@ -63,4 +58,80 @@
 
 .MuiOutlinedInput-notchedOutline {
     opacity: 0;
+}
+
+/* MAP FIELD */
+
+#map-field {
+    width: 100%;
+    height: 500px;
+}
+
+#map-field-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#map-field-mobile.active {
+    display: block;
+}
+
+.container-map-field-buttons {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #343a40;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+.container-map-field-buttons.active {
+    display: flex;
+}
+
+.container-map-field-buttons button {
+    width: 81px;
+}
+
+.container-target {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 !important;
+}
+
+.container-target .target {
+    width: 70px;
+    height: auto;
+}
+
+/*.target {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    width: 70px;*/
+/*}*/
+
+/*.target.active {*/
+/*    display: block;*/
+/*}*/
+
+@media (max-width: 576px) {
+    .container-form > div {
+        padding: 1.5em 2em;
+    }
 }
