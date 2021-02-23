@@ -3,6 +3,8 @@ import {Link, withRouter} from 'react-router-dom';
 import arrowLeft from '../images/left-arrow-white.svg';
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Offline from "./Offline";
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -18,6 +20,7 @@ class Pluvio extends Component {
         this.state = {
             loading: true,
             pluvio: null,
+            offline: false,
         };
     }
 
@@ -32,6 +35,7 @@ class Pluvio extends Component {
                 let data = await res.json();
                 this.setState({
                     loading: false,
+                    offline: false,
                     pluvio: JSON.parse(data)
                 });
 
@@ -48,7 +52,12 @@ class Pluvio extends Component {
             } else {
                 this.props.history.replace('/404');
             }
-        })
+        }).catch(function (error) {
+            this.setState({
+                loading: false,
+                offline: true,
+            });
+        }.bind(this));
     }
 
     render() {
@@ -60,13 +69,23 @@ class Pluvio extends Component {
                     </div>
                 ) : (
                     <>
-                        <Link to='/pluvios'>
-                            <button className="btn btn-primary">
-                                <img width="20" className="mr-2" src={arrowLeft}/>
-                                <span>Retour</span></button>
-                        </Link>
-                        <h1 className="mt-3 mb-4">Emplacement du pluvio : {this.state.pluvio.name}</h1>
-                        <div id="map-view"></div>
+                        {this.state.offline ? (
+                            <>
+                                <Offline reloadCallbackFunction={() => {
+                                    this.componentDidMount();
+                                }}/>
+                            </>
+                        ) : (
+                            <>
+                                <Link to='/pluvios'>
+                                    <button className="btn btn-primary">
+                                        <img width="20" className="mr-2" src={arrowLeft}/>
+                                        <span>Retour</span></button>
+                                </Link>
+                                <h1 className="mt-3 mb-4">Emplacement du pluvio : {this.state.pluvio.name}</h1>
+                                <div id="map-view"></div>
+                            </>
+                        )}
                     </>
                 )}
             </div>

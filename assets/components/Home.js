@@ -93,51 +93,53 @@ class Home extends Component {
     getReleves() {
         document.querySelector('.container-map').classList.add('loading');
 
-        setTimeout(() => {
-            fetch(process.env.SITE_URL + "/api/public/releves/" + this.state.settings).then(async res => {
-                if (res.status === 200) {
-                    let data = await res.json();
+        fetch(process.env.SITE_URL + "/api/public/releves/" + this.state.settings).then(async res => {
+            if (res.status === 200) {
+                let data = await res.json();
 
-                    this.markerGroup.clearLayers();
+                this.markerGroup.clearLayers();
 
-                    if (data.length > 0) {
-                        data.forEach((pluvio, index) => {
-                            let circleMarker = new L.circleMarker([pluvio.lat, pluvio.lng], {
-                                radius: 15,
-                                color: "black",
-                                fillColor: this.getColor(pluvio.total_precipitations),
-                                fillOpacity: 1,
-                            })
-                                .bindPopup(this.getPopupContent(pluvio))
-                                .addTo(this.markerGroup);
-                        });
-                        document.querySelector('.container-map').classList.remove('loading');
-                    } else {
-                        switch (this.state.settings) {
-                            case 'last_24_h':
-                                this.disableSetting('last_24_h');
-                                this.changeSettings('last_2_d')
-                                break;
-                            case 'last_2_d':
-                                this.disableSetting('last_2_d');
-                                this.changeSettings('last_5_d');
-                                break;
-                            case 'last_5_d':
-                                this.disableSetting('last_5_d');
-                                this.changeSettings('last_7_d');
-                                break;
-                            case 'last_7_d':
-                                this.disableSetting('last_7_d');
-                                document.querySelector('.container-map').classList.remove('loading');
-                                break;
-                            default:
-                                document.querySelector('.container-map').classList.remove('loading');
-                                break;
-                        }
+                if (data.length > 0) {
+                    data.forEach((pluvio, index) => {
+                        let circleMarker = new L.circleMarker([pluvio.lat, pluvio.lng], {
+                            radius: 15,
+                            color: "black",
+                            fillColor: this.getColor(pluvio.total_precipitations),
+                            fillOpacity: 1,
+                        })
+                            .bindPopup(this.getPopupContent(pluvio))
+                            .addTo(this.markerGroup);
+                    });
+                    document.querySelector('.container-map').classList.remove('loading');
+                } else {
+                    switch (this.state.settings) {
+                        case 'last_24_h':
+                            this.disableSetting('last_24_h');
+                            this.changeSettings('last_2_d')
+                            break;
+                        case 'last_2_d':
+                            this.disableSetting('last_2_d');
+                            this.changeSettings('last_5_d');
+                            break;
+                        case 'last_5_d':
+                            this.disableSetting('last_5_d');
+                            this.changeSettings('last_7_d');
+                            break;
+                        case 'last_7_d':
+                            this.disableSetting('last_7_d');
+                            document.querySelector('.container-map').classList.remove('loading');
+                            break;
+                        default:
+                            document.querySelector('.container-map').classList.remove('loading');
+                            break;
                     }
                 }
-            });
-        }, 500);
+            }
+        }).catch(function (error) {
+            this.props.notificationCallback('Hors connexion', 'Vous devez être connecté à internet pour voir les dates personnalisées', 5);
+            this.changeSettings('last_7_d');
+            this.containerCustomSetting.classList.remove('active');
+        }.bind(this));
     }
 
     getLegend() {
@@ -170,7 +172,7 @@ class Home extends Component {
                 '<i style="background:' + this.getColor(grades[i] + 1) + '"></i> ' +
                 grades[i] + (grades[i + 1] ? ' - ' + grades[i + 1] + '<br>' : '+');
 
-            if (i === grades.length-1) {
+            if (i === grades.length - 1) {
                 contentDiv.innerHTML += `</div>`;
                 div.innerHTML = contentDiv.outerHTML + titleDiv.outerHTML;
             }

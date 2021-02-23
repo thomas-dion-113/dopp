@@ -43,6 +43,9 @@ class ResetPassword extends Component {
                 }
                 this.setState({requestLoading: false});
             })
+            .catch(function (error) {
+                this.props.history.push('/modification-mot-de-passe-complete');
+            }.bind(this));
     }
 
     render() {

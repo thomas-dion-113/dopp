@@ -10,10 +10,6 @@ import AnonymousRoute from "./auth/AnonymousRoute";
 import RegisterPage from "./auth/RegisterPage";
 import RegisterComplete from "./auth/RegisterComplete";
 import ResetPassword from "./auth/ResetPassword";
-
-import logo from '../images/dopp-white-large-3.png';
-import logoResp from '../images/dopp-white.png';
-import profile from '../images/profile.svg';
 import RequestResetPassword from "./auth/RequestResetPassword";
 import RequestResetPasswordComplete from "./auth/RequestResetPasswordComplete";
 import ResetPasswordComplete from "./auth/ResetPasswordComplete";
@@ -25,7 +21,11 @@ import Releves from "./Releves";
 import ChoosePluvio from "./ChoosePluvio";
 import AccountForm from "./AccountForm";
 import MentionsLegales from "./MentionsLegales";
-import Offline from "./Offline";
+
+import logo from '../images/dopp-white-large-3.png';
+import logoResp from '../images/dopp-white.png';
+import profile from '../images/profile.svg';
+import OfflinePage from "./OfflinePage";
 
 class App extends Component {
 
@@ -35,7 +35,10 @@ class App extends Component {
         this.state = {
             tokenRequest: localStorage.getItem('token') ? false : true,
             token: JSON.parse(localStorage.getItem('token')),
-            user: null
+            user: null,
+            notification: false,
+            notificationTitle: '',
+            notificationMessage: '',
         };
 
         if (this.state.token) {
@@ -132,6 +135,20 @@ class App extends Component {
         }, 500);
     }
 
+    setNotification(title, message, time) {
+        this.setState({
+            notification: true,
+            notificationTitle: title,
+            notificationMessage: message,
+        });
+
+        setTimeout(() => {
+            this.setState({
+                notification: false,
+            });
+        }, time*1000);
+    }
+
     render() {
         return (
             <div>
@@ -210,9 +227,15 @@ class App extends Component {
                                 )}
                             </div>
                         </nav>
+                        <div className={"alert alert-primary alert-dismissible " + (this.state.notification ? "show" : "")}>
+                            <strong>{this.state.notificationTitle}</strong> <span>{this.state.notificationMessage}</span>
+                            <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        </div>
                         <Switch>
                             <Route path="/statistiques">
-                                <Statistiques token={this.state.token} user={this.state.user}/>
+                                <Statistiques token={this.state.token} user={this.state.user} notificationCallback={(title, message, time) => {
+                                    this.setNotification(title, message, time)
+                                }}/>
                             </Route>
                             <Route path="/mentions-legales">
                                 <MentionsLegales/>
@@ -220,8 +243,8 @@ class App extends Component {
                             <Route path="/404">
                                 <Page404/>
                             </Route>
-                            <Route path="/offline">
-                                <Offline/>
+                            <Route path="/offline.html">
+                                <OfflinePage/>
                             </Route>
                             <AnonymousRoute path="/login" user={this.state.user}>
                                 <LoginPage loginCallbackFunction={(values, from) => {
@@ -248,7 +271,11 @@ class App extends Component {
                             </AnonymousRoute>
                             <PrivateRoute path="/mon-compte" user={this.state.user}>
                                 <AccountForm token={this.state.token} user={this.state.user}
-                                             accountFormCallbackFunction={() => this.getUserFromToken()}/>
+                                             accountFormCallbackFunction={() => this.getUserFromToken()}
+                                             notificationCallback={(title, message, time) => {
+                                                 this.setNotification(title, message, time)
+                                             }}
+                                />
                             </PrivateRoute>
                             <PrivateRoute path="/releves" user={this.state.user}>
                                 <Releves token={this.state.token}/>
@@ -257,13 +284,19 @@ class App extends Component {
                                 <ChoosePluvio token={this.state.token}/>
                             </PrivateRoute>
                             <PrivateRoute path="/ajouter-un-releve/:id" user={this.state.user}>
-                                <ReleveForm token={this.state.token}/>
+                                <ReleveForm token={this.state.token} notificationCallback={(title, message, time) => {
+                                    this.setNotification(title, message, time)
+                                }}/>
                             </PrivateRoute>
                             <PrivateRoute path="/modifier-un-releve/:id" user={this.state.user}>
-                                <ReleveForm token={this.state.token}/>
+                                <ReleveForm token={this.state.token} notificationCallback={(title, message, time) => {
+                                    this.setNotification(title, message, time)
+                                }}/>
                             </PrivateRoute>
                             <PrivateRoute path="/ajouter-un-pluvio" user={this.state.user}>
-                                <PluvioForm token={this.state.token}/>
+                                <PluvioForm token={this.state.token} notificationCallback={(title, message, time) => {
+                                    this.setNotification(title, message, time)
+                                }}/>
                             </PrivateRoute>
                             <PrivateRoute path="/pluvios" user={this.state.user}>
                                 <Pluvios token={this.state.token}/>
@@ -271,7 +304,12 @@ class App extends Component {
                             <PrivateRoute path="/pluvio/:id" user={this.state.user}>
                                 <Pluvio token={this.state.token}/>
                             </PrivateRoute>
-                            <Route path="/" component={Home}/>
+                            {/*<Route path="/" component={Home}/>*/}
+                            <Route path="/">
+                                <Home notificationCallback={(title, message, time) => {
+                                    this.setNotification(title, message, time)
+                                }}/>
+                            </Route>
                         </Switch>
                     </>
                 ) : (

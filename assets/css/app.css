@@ -20,6 +20,23 @@
     align-items: center;
 }
 
+.alert {
+    position: fixed;
+    bottom: 1em;
+    left: 1em;
+    margin: 0;
+    z-index: 10005;
+    height: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+.alert.show {
+    height: auto;
+    transform: scaleY(1);
+    transition: all ease 300ms;
+}
+
 @media (max-width: 576px) {
     .container {
         margin: 2em auto;
@@ -40,5 +57,9 @@
 
     .container-horizontal > *:first-child {
         margin-bottom: 1rem;
+    }
+
+    .alert {
+        right: 1em;
     }
 }

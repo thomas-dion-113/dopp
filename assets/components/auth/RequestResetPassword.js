@@ -37,6 +37,9 @@ class RequestResetPassword extends Component {
                     })
                 }
             })
+            .catch(function (error) {
+                this.props.history.replace('/mot-de-passe-oublie-complete');
+            }.bind(this));
     }
 
     render() {

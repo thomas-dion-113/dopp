@@ -56,6 +56,9 @@ class RegisterPage extends Component {
                     this.setState({requestLoading: false});
                 }
             })
+            .catch(function (error) {
+                this.props.history.replace('/inscription-complete');
+            }.bind(this));
     }
 
     render() {

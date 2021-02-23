@@ -1,7 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const dotenv = require('dotenv');
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -43,7 +42,7 @@ Encore
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
-    // .cleanupOutputBeforeBuild()
+    .cleanupOutputBeforeBuild(['**/*', '!index.php', '!manifest.webmanifest', '!static_images/**'])
     // .enableBuildNotifications()
     // .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
@@ -88,7 +87,7 @@ Encore
 
     .addPlugin(new WorkboxWebpackPlugin.InjectManifest({
         swSrc: "./assets/src-sw.js",
-        swDest: "sw.js"
+        swDest: "sw.js",
     }))
 
 ;

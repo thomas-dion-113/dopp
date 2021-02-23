@@ -58,6 +58,11 @@ class AccountForm extends Component {
                     this.setState({requestLoading: false});
                 }
             })
+            .catch(async function (error) {
+                this.props.notificationCallback('Hors connexion', 'Votre compte sera modifié dès vous serez connecté à internet', 5);
+                await this.props.accountFormCallbackFunction();
+                this.props.history.replace('/releves');
+            }.bind(this));
     }
 
     render() {

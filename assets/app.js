@@ -10,7 +10,6 @@ import './css/home.css';
 import './css/nav.css';
 import './css/form.css';
 import './css/pluvio.css';
-import './css/releve.css';
 import './css/item.css';
 import './css/daterangepicker.css';
 import './css/stats.css';
@@ -21,7 +20,7 @@ ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js').then(function(registration) {
+        navigator.serviceWorker.register(process.env.SITE_URL + '/sw.js').then(function(registration) {
             console.log('Worker registration successful', registration.scope);
         }, function(err) {
             console.log('Worker registration failed', err);

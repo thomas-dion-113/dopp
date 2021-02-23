@@ -42,6 +42,10 @@ class PluvioForm extends Component {
                     this.setState({requestLoading: false});
                 }
             })
+            .catch(function (error) {
+                this.props.notificationCallback('Hors connexion', 'Votre pluvio sera créé dès vous serez connecté à internet', 5);
+                this.props.history.push('/pluvios');
+            }.bind(this));
     }
 
     render() {

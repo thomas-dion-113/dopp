@@ -1,14 +1,26 @@
-import { registerRoute } from 'workbox-routing';
+import {registerRoute, setCatchHandler} from "workbox-routing";
+import {matchPrecache, precacheAndRoute} from "workbox-precaching";
+import {BackgroundSyncPlugin} from 'workbox-background-sync';
+
 import {
+    NetworkOnly,
     NetworkFirst,
     StaleWhileRevalidate,
     CacheFirst,
 } from 'workbox-strategies';
 
-import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute, matchPrecache } from 'workbox-precaching';
-import { setCatchHandler } from 'workbox-routing';
+import {CacheableResponsePlugin} from 'workbox-cacheable-response';
+import {ExpirationPlugin} from 'workbox-expiration';
+import {clientsClaim, skipWaiting} from "workbox-core";
+
+precacheAndRoute([
+    {url: '/offline.html', revision: '1'},
+    {url: '/api/public/stats/average/', revision: '1'},
+    {url: '/api/public/releves/last_24_h', revision: '1'},
+    {url: '/api/public/releves/last_2_d', revision: '1'},
+    {url: '/api/public/releves/last_5_d', revision: '1'},
+    {url: '/api/public/releves/last_7_d', revision: '1'},
+]);
 
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST);
@@ -16,19 +28,62 @@ precacheAndRoute(self.__WB_MANIFEST);
 // Catch routing errors, like if the user is offline
 setCatchHandler(async ({ event }) => {
     // Return the precached offline page if a document is being requested
-    console.log("EVENT", event);
     if (event.request.destination === 'document') {
-        return matchPrecache('/offline');
+        return matchPrecache('/offline.html');
     }
 
     return Response.error();
 });
 
+//BackgroundSync
+//On https://ptsv2.com/t/n5y9f-1556037444 you can check for received posts
+const bgSyncPlugin = new BackgroundSyncPlugin('queue', {
+    maxRetentionTime: 24 * 60 // Retry for max of 24 Hours
+});
+
 registerRoute(
-    ({url}) => url.origin === 'http://127.0.0.1:8000' &&
-        url.pathname.startsWith('/api/'),
-    new CacheFirst({
+    ({url}) => url.origin === process.env.SITE_URL && (
+        url.pathname === '/api/private/create_releve' ||
+        url.pathname === '/api/private/edit_releve' ||
+        url.pathname === '/api/private/create_pluvio' ||
+        url.pathname === '/api/private/edit_user' ||
+        url.pathname === '/api/public/request_reset_password' ||
+        url.pathname === '/api/public/reset_password' ||
+        url.pathname === '/api/public/register'
+    ),
+    new NetworkOnly({
+        plugins: [bgSyncPlugin]
+    }),
+    'POST'
+);
+
+registerRoute(
+    ({url}) =>  url.origin === process.env.SITE_URL && (
+        url.pathname.startsWith('/api/private/releve/')
+    ),
+    new NetworkOnly(),
+    'GET'
+);
+
+registerRoute(
+    ({url}) => url.origin === process.env.SITE_URL && (
+        url.pathname.startsWith('/api/')
+    ),
+    new NetworkFirst({
         cacheName: 'api-cache',
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [0, 200],
+            })
+        ]
+    }),
+    'GET'
+);
+
+registerRoute(
+    ({url}) => url.origin === 'https://fonts.googleapis.com' || 'https://fonts.gstatic.com',
+    new CacheFirst({
+        cacheName: 'google-font-cache',
         plugins: [
             new CacheableResponsePlugin({
                 statuses: [0, 200],
@@ -38,7 +93,7 @@ registerRoute(
 );
 
 registerRoute(
-    ({url}) => url.origin === 'api.mapbox.com',
+    ({url}) => url.origin === 'https://api.mapbox.com',
     new CacheFirst({
         cacheName: 'leaflet-cache',
         plugins: [
@@ -52,7 +107,7 @@ registerRoute(
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
     // Check to see if the request is a navigation to a new page
-    ({ request }) => request.mode === 'navigate',
+    ({request}) => request.mode === 'navigate',
     // Use a Network First caching strategy
     new NetworkFirst({
         // Put all cached files in a cache named 'pages'
@@ -69,9 +124,10 @@ registerRoute(
 // Cache CSS, JS, and Web Worker requests with a Stale While Revalidate strategy
 registerRoute(
     // Check to see if the request's destination is style for stylesheets, script for JavaScript, or worker for web worker
-    ({ request }) =>
+    ({request}) =>
         request.destination === 'style' ||
         request.destination === 'script' ||
+        request.destination === 'font' ||
         request.destination === 'worker',
     // Use a Stale While Revalidate caching strategy
     new StaleWhileRevalidate({
@@ -89,7 +145,7 @@ registerRoute(
 // Cache images with a Cache First strategy
 registerRoute(
     // Check to see if the request's destination is style for an image
-    ({ request }) => request.destination === 'image',
+    ({request}) => request.destination === 'image',
     // Use a Cache First caching strategy
     new CacheFirst({
         // Put all cached files in a cache named 'images'
@@ -107,3 +163,6 @@ registerRoute(
         ],
     }),
 );
+
+skipWaiting();
+clientsClaim();

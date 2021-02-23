@@ -74,6 +74,10 @@ class Statistiques extends Component {
     }
 
     getReleves() {
+        this.setState({
+            loading: true,
+        });
+
         fetch(process.env.SITE_URL + "/api/" + this.state.security + "/stats/average/" + this.state.settings, {
             headers: {
                 "Authorization": "Bearer " + this.props.token
@@ -143,7 +147,9 @@ class Statistiques extends Component {
                     });
                 }
             }
-        });
+        }).catch(function (error) {
+            this.props.notificationCallback('Hors connexion', 'Vous devez être connecté à internet pour voir les statistiques', 5);
+        }.bind(this));
     }
 
     render() {
