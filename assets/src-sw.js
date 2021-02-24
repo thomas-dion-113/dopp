@@ -13,15 +13,6 @@ import {CacheableResponsePlugin} from 'workbox-cacheable-response';
 import {ExpirationPlugin} from 'workbox-expiration';
 import {clientsClaim, skipWaiting} from "workbox-core";
 
-precacheAndRoute([
-    {url: '/offline.html', revision: '1'},
-    {url: '/api/public/stats/average/', revision: '1'},
-    {url: '/api/public/releves/last_24_h', revision: '1'},
-    {url: '/api/public/releves/last_2_d', revision: '1'},
-    {url: '/api/public/releves/last_5_d', revision: '1'},
-    {url: '/api/public/releves/last_7_d', revision: '1'},
-]);
-
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST);
 

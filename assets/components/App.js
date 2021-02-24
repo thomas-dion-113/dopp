@@ -304,7 +304,6 @@ class App extends Component {
                             <PrivateRoute path="/pluvio/:id" user={this.state.user}>
                                 <Pluvio token={this.state.token}/>
                             </PrivateRoute>
-                            {/*<Route path="/" component={Home}/>*/}
                             <Route path="/">
                                 <Home notificationCallback={(title, message, time) => {
                                     this.setNotification(title, message, time)
