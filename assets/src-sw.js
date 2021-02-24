@@ -13,6 +13,9 @@ import {CacheableResponsePlugin} from 'workbox-cacheable-response';
 import {ExpirationPlugin} from 'workbox-expiration';
 import {clientsClaim, skipWaiting} from "workbox-core";
 
+skipWaiting();
+clientsClaim();
+
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -154,6 +157,3 @@ registerRoute(
         ],
     }),
 );
-
-skipWaiting();
-clientsClaim();

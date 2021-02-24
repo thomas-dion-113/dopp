@@ -37,7 +37,9 @@ class Home extends Component {
         this.initSettings();
         this.initLegend();
         this.initDateRangePicker();
-        this.getReleves();
+        setTimeout(() => {
+            this.getReleves();
+        }, 1);
     }
 
     initMap() {
@@ -91,7 +93,9 @@ class Home extends Component {
     }
 
     getReleves() {
-        document.querySelector('.container-map').classList.add('loading');
+        if (document.querySelector('.container-map')) {
+            document.querySelector('.container-map').classList.add('loading');
+        }
 
         fetch(process.env.SITE_URL + "/api/public/releves/" + this.state.settings).then(async res => {
             if (res.status === 200) {
@@ -136,9 +140,14 @@ class Home extends Component {
                 }
             }
         }).catch(function (error) {
-            this.props.notificationCallback('Hors connexion', 'Vous devez être connecté à internet pour voir les dates personnalisées', 5);
-            this.changeSettings('last_7_d');
-            this.containerCustomSetting.classList.remove('active');
+            console.log(error);
+            if (error === 'TypeError: Failed to fetch') {
+                this.props.notificationCallback('Hors connexion', 'Vous devez être connecté à internet pour voir la cartographie', 5);
+                if (this.state.settings !== 'last_24_h') {
+                    this.changeSettings('last_24_h');
+                }
+                this.containerCustomSetting.classList.remove('active');
+            }
         }.bind(this));
     }
 

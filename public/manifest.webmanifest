@@ -17,6 +17,6 @@
   "background_color": "#007bff",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#007bff",
+  "theme_color": "#343a40",
   "description": "Données ouvertes de pluviométrie pour les paludiers"
 }

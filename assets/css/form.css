@@ -86,18 +86,29 @@
     top: 0;
     right: 0;
     left: 0;
+}
+
+.container-map-field-buttons.active {
+    display: block;
+}
+
+.container-map-field-buttons .container-buttons {
+    display: flex;
     background-color: #343a40;
     align-items: center;
     justify-content: space-around;
     padding: 1em;
 }
 
-.container-map-field-buttons.active {
-    display: flex;
+.container-map-field-buttons .container-buttons button {
+    width: 81px;
 }
 
-.container-map-field-buttons button {
-    width: 81px;
+.container-map-field-buttons .container-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
 }
 
 .container-target {
@@ -116,19 +127,6 @@
     width: 70px;
     height: auto;
 }
-
-/*.target {*/
-/*    display: none;*/
-/*    position: fixed;*/
-/*    left: 50%;*/
-/*    top: 50%;*/
-/*    transform: translate(-50%, -50%);*/
-/*    width: 70px;*/
-/*}*/
-
-/*.target.active {*/
-/*    display: block;*/
-/*}*/
 
 @media (max-width: 576px) {
     .container-form > div {

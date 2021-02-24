@@ -22,8 +22,8 @@ import ChoosePluvio from "./ChoosePluvio";
 import AccountForm from "./AccountForm";
 import MentionsLegales from "./MentionsLegales";
 
-import logo from '../images/dopp-white-large-3.png';
-import logoResp from '../images/dopp-white.png';
+import logo from '../images/dopp_logo_white_h_60.png';
+import logoResp from '../images/dopp_white_h_60.png';
 import profile from '../images/profile.svg';
 import OfflinePage from "./OfflinePage";
 
@@ -34,6 +34,7 @@ class App extends Component {
 
         this.state = {
             tokenRequest: localStorage.getItem('token') ? false : true,
+            loadingSW: true,
             token: JSON.parse(localStorage.getItem('token')),
             user: null,
             notification: false,
@@ -41,21 +42,32 @@ class App extends Component {
             notificationMessage: '',
         };
 
-        if (this.state.token) {
-            this.getUserFromToken();
-        }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register(process.env.SITE_URL + '/sw.js').then(() => {
+                    return navigator.serviceWorker.ready;
+                }).then(() => {
+                    if (this.state.token) {
+                        this.getUserFromToken();
+                    }
 
-        setInterval(function () {
-            if (this.state.token) {
-                this.getUserFromToken();
-            }
-        }.bind(this), 3540000);
+                    setInterval(function () {
+                        if (this.state.token) {
+                            this.getUserFromToken();
+                        }
+                    }.bind(this), 3540000);
+
+                    this.setState({loadingSW: false});
+                    this.initNav();
+                });
+            }.bind(this));
+        } else {
+            console.log('Service Worker is not supported by browser.');
+        }
     }
 
     componentDidMount() {
-        if (this.state.tokenRequest) {
-            this.initNav();
-        }
+        this.initNav();
     }
 
     initNav() {
@@ -152,7 +164,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                {this.state.tokenRequest ? (
+                {this.state.tokenRequest && !this.state.loadingSW ? (
                     <>
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                             <Link className={"navbar-brand"} to={"/"}>

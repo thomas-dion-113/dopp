@@ -76,15 +76,19 @@ class Pluvio extends Component {
                                 }}/>
                             </>
                         ) : (
-                            <>
+                            <div className="container-pluvio-view">
+                                <div>
                                 <Link to='/pluvios'>
                                     <button className="btn btn-primary">
                                         <img width="20" className="mr-2" src={arrowLeft}/>
                                         <span>Retour</span></button>
                                 </Link>
+                                </div>
                                 <h1 className="mt-3 mb-4">Emplacement du pluvio : {this.state.pluvio.name}</h1>
-                                <div id="map-view"></div>
-                            </>
+                                <div className="container-map-view">
+                                    <div id="map-view"></div>
+                                </div>
+                            </div>
                         )}
                     </>
                 )}
