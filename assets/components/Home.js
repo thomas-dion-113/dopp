@@ -283,12 +283,22 @@ class Home extends Component {
     getPopupContent(pluvio) {
         let popupContent = `<h3 class="text-center">${pluvio.total_precipitations.toString()}mm</h3>`;
 
+        console.log(pluvio);
+
         let releves = pluvio.releves.split('|');
+
+        console.log(releves);
+
         releves.forEach((releve, index) => {
             let precipitations = releve.split(';')[0];
             let dateTime = releve.split(';')[1];
 
-            popupContent = popupContent + `<p>${precipitations}mm le ${format(new Date(dateTime + "Z"), "dd/MM/yyyy à HH:mm", {locale: frLocale})}`
+            console.log(precipitations);
+            console.log(dateTime);
+
+            popupContent = popupContent + `<p>${precipitations}mm le ${format(new Date(dateTime + "Z"), "dd/MM/yyyy à HH:mm", {locale: frLocale})}`;
+
+            console.log(popupContent);
         });
 
         return popupContent;
