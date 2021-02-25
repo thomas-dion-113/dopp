@@ -17,6 +17,12 @@
     "creof/wkt-parser": {
         "version": "2.2.0"
     },
+    "deployer/deployer": {
+        "version": "v6.7.1"
+    },
+    "deployer/phar-update": {
+        "version": "v2.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -146,6 +152,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
+    },
+    "pimple/pimple": {
+        "version": "v3.2.3"
     },
     "psr/cache": {
         "version": "1.0.1"

@@ -128,6 +128,10 @@
     height: auto;
 }
 
+.form-control[readonly] {
+    background-color: #ffffff;
+}
+
 @media (max-width: 576px) {
     .container-form > div {
         padding: 1.5em 2em;

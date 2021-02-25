@@ -3,6 +3,8 @@ import {Line} from "react-chartjs-2";
 import 'chartjs-plugin-colorschemes';
 import moment from 'moment';
 import $ from "jquery";
+import 'daterangepicker';
+import 'daterangepicker/daterangepicker.css';
 import configDateRangePicker from "./configDateRangePicker";
 import deviceDetection from "./DeviceDetection";
 import closeImage from '../images/close.svg';
@@ -160,7 +162,7 @@ class Statistiques extends Component {
                 <div className="container-input">
                     <label>Filtrer par dates :</label>
                     <div className="container-input-close">
-                        <input name="custom-dates" className="form-control"/>
+                        <input readOnly nly name="custom-dates" className="form-control"/>
                         {this.state.settings != '' && (
                             <img className="close" src={closeImage}/>
                         )}

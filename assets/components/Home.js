@@ -215,7 +215,7 @@ class Home extends Component {
             `<span id="last_5_d">5 derniers jours</span>` +
             `<span id="last_7_d">7 derniers jours</span>` +
             `<span id="custom">Dates personnalisées</span>` +
-            `<div id="container-custom-field"><input placeholder="Dates" name="custom-field" class="form-control"/></div>` +
+            `<div id="container-custom-field"><input readonly placeholder="Dates" name="custom-field" class="form-control"/></div>` +
             `</div>`;
 
         return div;
