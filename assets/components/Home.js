@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import format from "date-fns/format";
-import { zonedTimeToUtc } from 'date-fns-tz'
+import { zonedTimeToUtc } from 'date-fns-tz';
 import frLocale from "date-fns/locale/fr";
 import "../css/leaflet-fullscreen.css";
 import "./leaflet-fullscreen";
@@ -15,8 +15,6 @@ import deviceDetection from "./DeviceDetection";
 class Home extends Component {
     constructor(props) {
         super(props);
-
-        console.log(deviceDetection());
 
         this.state = {
             pluvios: null,
@@ -35,8 +33,6 @@ class Home extends Component {
     componentDidMount() {
         document.querySelector('html').classList.add('home');
         document.querySelector('.container-map').classList.add('loading');
-
-        console.log(deviceDetection());
 
         this.initMap();
         this.initSettings();

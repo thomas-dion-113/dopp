@@ -6,6 +6,7 @@ import yupLocale from './yupLocales';
 import DateTime from "./DateTime";
 import setInputFilter from "./inputFilter";
 import {isBefore} from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
 import Offline from "./Offline";
 
 Yup.setLocale(yupLocale);
@@ -57,8 +58,8 @@ class ReleveForm extends Component {
                     this.setState({
                         pluvio: releve.pluvio,
                         initialValues: {
-                            dateTime: new Date(releve.dateTime.date + "Z"),
-                            previousDateTime: new Date(releve.previousDateTime.date + "Z"),
+                            dateTime: zonedTimeToUtc(releve.dateTime.date + "Z", 'Europe/Paris'),
+                            previousDateTime: zonedTimeToUtc(releve.previousDateTime.date + "Z", 'Europe/Paris'),
                             precipitations: releve.precipitations,
                         },
                         loadingPluvio: false,
@@ -120,7 +121,7 @@ class ReleveForm extends Component {
                     this.setState({
                         initialValues: {
                             dateTime: new Date(),
-                            previousDateTime: new Date(JSON.parse(data).dateTime.date + "Z"),
+                            previousDateTime: zonedTimeToUtc(JSON.parse(data).dateTime.date + "Z", 'Europe/Paris'),
                             precipitations: '',
                         }
                     });

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from "react-router-dom";
 import format from "date-fns/format";
+import { zonedTimeToUtc } from 'date-fns-tz';
 import frLocale from "date-fns/locale/fr";
 import Pagination from "react-js-pagination";
 
@@ -68,7 +69,7 @@ class Releves extends Component {
                                     {currentItems.map((releve) => {
                                         return (
                                             <li key={releve.id} className="item">
-                                                <h2 className="h3">{format(new Date(releve.dateTime.date + "Z"), "dd/MM/yyyy à HH:mm", {locale: frLocale})}</h2>
+                                                <h2 className="h3">{format(zonedTimeToUtc(releve.dateTime.date + "Z", 'Europe/Paris'), "dd/MM/yyyy à HH:mm", {locale: frLocale})}</h2>
                                                 <p>Pluvio : {releve.pluvio.name}</p>
                                                 <p>Précipitations : {releve.precipitations}mm</p>
                                                 <div
