@@ -27,7 +27,7 @@
 
 .container-input .close {
     width: 30px;
-    height: auto;
+    height: 38px;
     margin-left: 0.5em;
     transition: all ease-in-out 300ms;
 }
