@@ -16,6 +16,8 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
+        console.log(deviceDetection());
+
         this.state = {
             pluvios: null,
             settings: 'last_24_h',
@@ -33,6 +35,8 @@ class Home extends Component {
     componentDidMount() {
         document.querySelector('html').classList.add('home');
         document.querySelector('.container-map').classList.add('loading');
+
+        console.log(deviceDetection());
 
         this.initMap();
         this.initSettings();
@@ -233,7 +237,10 @@ class Home extends Component {
         L.DomEvent.on(elem, 'dblclick', L.DomEvent.stopPropagation);
         L.DomEvent.on(elem, 'mousewheel', L.DomEvent.stopPropagation);
 
+        console.log(this.state.event);
+
         this.currentSetting.addEventListener(this.state.event, () => {
+            console.log("EVENT !!!");
             this.currentSetting.classList.toggle('active');
             this.containerSettings.classList.toggle('active');
         });
@@ -283,26 +290,12 @@ class Home extends Component {
 
     getPopupContent(pluvio) {
         let popupContent = `<h3 class="text-center">${pluvio.total_precipitations.toString()}mm</h3>`;
-
-        console.log(pluvio);
-
         let releves = pluvio.releves.split('|');
-
-        console.log(releves);
 
         releves.forEach((releve, index) => {
             let precipitations = releve.split(';')[0];
             let dateTime = releve.split(';')[1];
-
-            console.log(precipitations);
-            console.log(dateTime);
-            console.log(new Date(dateTime));
-            console.log(new Date(dateTime + "Z"));
-            console.log(zonedTimeToUtc(dateTime + "Z", 'Europe/Paris'));
-
             popupContent = popupContent + `<p>${precipitations}mm le ${format(zonedTimeToUtc(dateTime + "Z", 'Europe/Paris'), "dd/MM/yyyy à HH:mm", {locale: frLocale})}`;
-
-            console.log(popupContent);
         });
 
         return popupContent;

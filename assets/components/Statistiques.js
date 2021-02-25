@@ -162,7 +162,7 @@ class Statistiques extends Component {
                 <div className="container-input">
                     <label>Filtrer par dates :</label>
                     <div className="container-input-close">
-                        <input readOnly nly name="custom-dates" className="form-control"/>
+                        <input readOnly name="custom-dates" className="form-control"/>
                         {this.state.settings != '' && (
                             <img className="close" src={closeImage}/>
                         )}
