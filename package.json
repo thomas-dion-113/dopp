@@ -30,6 +30,7 @@
         "chart.js": "^2.9.4",
         "chartjs-plugin-colorschemes": "^0.4.0",
         "date-fns": "^2.17.0",
+        "date-fns-tz": "^1.1.2",
         "daterangepicker": "^3.1.0",
         "dotenv": "^8.2.0",
         "formik": "^2.2.6",

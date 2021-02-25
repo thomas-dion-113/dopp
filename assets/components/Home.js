@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import format from "date-fns/format";
+import { zonedTimeToUtc } from 'date-fns-tz'
 import frLocale from "date-fns/locale/fr";
 import "../css/leaflet-fullscreen.css";
 import "./leaflet-fullscreen";
@@ -295,8 +296,11 @@ class Home extends Component {
 
             console.log(precipitations);
             console.log(dateTime);
+            console.log(new Date(dateTime));
+            console.log(new Date(dateTime + "Z"));
+            console.log(zonedTimeToUtc(dateTime + "Z", 'Europe/Paris'));
 
-            popupContent = popupContent + `<p>${precipitations}mm le ${format(new Date(dateTime + "Z"), "dd/MM/yyyy à HH:mm", {locale: frLocale})}`;
+            popupContent = popupContent + `<p>${precipitations}mm le ${format(zonedTimeToUtc(dateTime + "Z", 'Europe/Paris'), "dd/MM/yyyy à HH:mm", {locale: frLocale})}`;
 
             console.log(popupContent);
         });
