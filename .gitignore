@@ -22,21 +22,12 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-#!public/static_images/
-#/public/
 !public/
-
 public/*
 !public/index.php
 !public/manifest.webmanifest
 !public/static_images/
 !public/static_images/*
-
-#/public/images/
-#/public/app.css
-#/public/app.js
-#/public/entrypoints.json
-#/public/manifest.json
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
@@ -46,3 +37,5 @@ yarn-error.log
 ###< lexik/jwt-authentication-bundle ###
 
 .idea/
+
+deploy.php
