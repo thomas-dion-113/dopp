@@ -18,7 +18,7 @@ class ChoosePluvio extends Component {
     }
 
     componentDidMount() {
-        fetch(process.env.SITE_URL + "/api/private/pluvios/", {
+        fetch(process.env.SITE_URL + "/api/private/pluvios", {
             headers: {
                 "Authorization": "Bearer " + this.props.token
             }
