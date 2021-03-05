@@ -63,7 +63,7 @@ class Statistiques extends Component {
 
     changeSettingsCustomDates(dateFrom, dateTo) {
         this.setState({
-            settings: 'custom_dates/' + dateFrom.toISOString() + '/' + dateTo.toISOString(),
+            settings: '/custom_dates/' + dateFrom.toISOString() + '/' + dateTo.toISOString(),
         });
 
         document.querySelector('.container-input .close').addEventListener(this.state.event, () => {
@@ -80,7 +80,7 @@ class Statistiques extends Component {
             loading: true,
         });
 
-        fetch(process.env.SITE_URL + "/api/" + this.state.security + "/stats/average/" + this.state.settings, {
+        fetch(process.env.SITE_URL + "/api/" + this.state.security + "/stats/average" + this.state.settings, {
             headers: {
                 "Authorization": "Bearer " + this.props.token
             }
