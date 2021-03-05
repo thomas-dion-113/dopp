@@ -11,6 +11,7 @@ html.home #root > div {
     display: flex;
     position: relative;
     height: 100%;
+    flex: 1;
 }
 
 .container-map.loading {
