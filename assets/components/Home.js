@@ -141,7 +141,6 @@ class Home extends Component {
                 }
             }
         }).catch(function (error) {
-            console.log(error);
             if (error === 'TypeError: Failed to fetch') {
                 this.props.notificationCallback('Hors connexion', 'Vous devez être connecté à internet pour voir la cartographie', 5);
                 if (this.state.settings !== 'last_24_h') {
@@ -233,10 +232,7 @@ class Home extends Component {
         L.DomEvent.on(elem, 'dblclick', L.DomEvent.stopPropagation);
         L.DomEvent.on(elem, 'mousewheel', L.DomEvent.stopPropagation);
 
-        console.log(this.state.event);
-
         this.currentSetting.addEventListener(this.state.event, () => {
-            console.log("EVENT !!!");
             this.currentSetting.classList.toggle('active');
             this.containerSettings.classList.toggle('active');
         });
