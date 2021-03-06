@@ -20,7 +20,6 @@ class Home extends Component {
             pluvios: null,
             settings: 'last_24_h',
             mobile: deviceDetection() ? true : false,
-            event: deviceDetection() ? 'touchend' : 'click'
         };
 
         this.limits = [[47.337423, -2.500645], [47.286010, -2.502467], [47.279478, -2.439705], [47.292789, -2.402294], [47.305233, -2.418892], [47.322426, -2.460425]];
@@ -195,7 +194,7 @@ class Home extends Component {
         L.DomEvent.on(elem, 'dblclick', L.DomEvent.stopPropagation);
         L.DomEvent.on(elem, 'mousewheel', L.DomEvent.stopPropagation);
 
-        document.querySelector('.legend').addEventListener(this.state.event, () => {
+        document.querySelector('.legend').addEventListener('click', () => {
             document.querySelectorAll('.legend div').forEach(div => {
                 div.classList.toggle('active');
             });
@@ -238,7 +237,7 @@ class Home extends Component {
         });
 
         this.settings.forEach(setting => {
-            setting.addEventListener(this.state.event, () => {
+            setting.addEventListener('click', () => {
                 if (!setting.classList.contains('active') && !setting.classList.contains('disable')) {
                     if (setting.id !== 'custom') {
                         this.containerCustomSetting.classList.remove('active');

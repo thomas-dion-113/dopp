@@ -57,7 +57,7 @@ html.home #root > div {
     width: 21px;
     height: 21px;
     font: 30px/14px Tahoma, Verdana, sans-serif;
-    color: #000000;
+    color: blue;
 }
 
 .info, .settings {
