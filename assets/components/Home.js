@@ -232,7 +232,7 @@ class Home extends Component {
         L.DomEvent.on(elem, 'dblclick', L.DomEvent.stopPropagation);
         L.DomEvent.on(elem, 'mousewheel', L.DomEvent.stopPropagation);
 
-        this.currentSetting.addEventListener(this.state.event, () => {
+        this.currentSetting.addEventListener('click', () => {
             this.currentSetting.classList.toggle('active');
             this.containerSettings.classList.toggle('active');
         });
