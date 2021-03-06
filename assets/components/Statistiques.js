@@ -6,6 +6,7 @@ import $ from "jquery";
 import 'daterangepicker';
 import 'daterangepicker/daterangepicker.css';
 import configDateRangePicker from "./configDateRangePicker";
+import deviceDetection from "./DeviceDetection";
 import closeImage from '../images/close.svg';
 import rotateImage from '../images/rotate.svg';
 
@@ -23,6 +24,7 @@ class Statistiques extends Component {
             data: {},
             settings: '',
             security: this.props.user ? 'private' : 'public',
+            event: deviceDetection() ? 'touchend' : 'click',
         };
     }
 
@@ -64,16 +66,12 @@ class Statistiques extends Component {
             settings: '/custom_dates/' + dateFrom.toISOString() + '/' + dateTo.toISOString(),
         });
 
-        document.querySelector('.container-input .close').addEventListener('click', this.reset.bind(this));
+        document.querySelector('.container-input .close').addEventListener(this.state.event, () => {
+            this.setState({settings: ''});
+            $('input[name="custom-dates"]').val('');
+            this.getReleves();
+        });
 
-        this.getReleves();
-    }
-
-    reset(e) {
-        console.log('OK');
-        // e.preventDefault();
-        this.setState({settings: ''});
-        $('input[name="custom-dates"]').val('');
         this.getReleves();
     }
 
