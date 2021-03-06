@@ -56,8 +56,8 @@ html.home #root > div {
     padding: 6px 6px 0 0;
     width: 21px;
     height: 21px;
-    font: 30px/14px Tahoma, Verdana, sans-serif;
-    color: blue;
+    font: 25px/14px Tahoma, Verdana, sans-serif;
+    color: #000000;
 }
 
 .info, .settings {
