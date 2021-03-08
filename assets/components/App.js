@@ -98,7 +98,7 @@ class App extends Component {
             navLink.addEventListener('touchend', () => {
                 setTimeout(() => {
                     $('.navbar-collapse').collapse('hide');
-                }, 1);
+                }, 250);
             });
         });
     }
