@@ -77,8 +77,9 @@ class App extends Component {
             navLink.addEventListener('touchend', () => {
                 console.log("HIDE NAVBAR 0");
                 setTimeout(() => {
-                    $('.navbar-collapse').collapse('hide');
                     console.log("HIDE NAVBAR 1");
+                    $('.navbar-collapse').collapse('hide');
+                    console.log("HIDE NAVBAR 2");
                 }, 500)
             });
         });
