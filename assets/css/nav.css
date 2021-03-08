@@ -40,7 +40,6 @@ nav .navbar-nav > li > a:hover, nav .navbar-nav > li > div.nav-link:hover {
     .navbar .navbar-nav:not(.justify-content-end) .nav-item {
         display: table;
         width: 100%;
-        background-color: transparent;
     }
 
     .navbar .navbar-nav:not(.justify-content-end) .nav-item .nav-link {

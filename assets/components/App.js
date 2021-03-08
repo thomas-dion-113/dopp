@@ -75,8 +75,11 @@ class App extends Component {
         let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
         navLinks.forEach(navLink => {
             navLink.addEventListener('touchend', () => {
-                // $('.navbar-collapse').collapse('hide');
-                console.log("HIDE NAVBAR");
+                console.log("HIDE NAVBAR 0");
+                setTimeout(() => {
+                    $('.navbar-collapse').collapse('hide');
+                    console.log("HIDE NAVBAR 1");
+                }, 500)
             });
         });
     }
