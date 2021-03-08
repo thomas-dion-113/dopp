@@ -103,7 +103,7 @@ class App extends Component {
                     console.log("HIDE NAVBAR 1");
                     $('.navbar-collapse').collapse('hide');
                     console.log("HIDE NAVBAR 2");
-                }, 150);
+                }, 50);
             });
         });
     }
