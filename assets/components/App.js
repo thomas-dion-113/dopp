@@ -48,18 +48,23 @@ class App extends Component {
             let registration;
 
             const showSkipWaitingPrompt = (event) => {
+                console.log('UPDATE');
                 wb.addEventListener('controlling', (event) => {
+                    console.log('RELOAD');
                     window.location.reload();
                 });
 
                 if (registration && registration.waiting) {
                     messageSW(registration.waiting, {type: 'SKIP_WAITING'});
                 }
+
+                console.log('END UPDATE');
             };
 
             wb.addEventListener('waiting', showSkipWaitingPrompt);
             wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
 
+            console.log('REGISTER');
             wb.register().then((r) => registration = r).then(() => {
                 if (this.state.token) {
                     this.getUserFromToken();
@@ -73,6 +78,7 @@ class App extends Component {
 
                 this.setState({loadingSW: false});
                 this.initNav();
+                console.log('END REGISTER');
             });
         }
     }
@@ -86,7 +92,7 @@ class App extends Component {
         navLinks.forEach(navLink => {
             navLink.addEventListener('touchend', () => {
                 setTimeout(() => {
-                    $('.navbar-collapse').collapse('hide');
+                    // $('.navbar-collapse').collapse('hide');
                 }, 1);
             });
         });
