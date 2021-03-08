@@ -13,8 +13,20 @@ import {CacheableResponsePlugin} from 'workbox-cacheable-response';
 import {ExpirationPlugin} from 'workbox-expiration';
 import {clientsClaim, skipWaiting} from "workbox-core";
 
-skipWaiting();
-clientsClaim();
+// console.log("INSTALL");
+// skipWaiting();
+// clientsClaim();
+
+// addEventListener('install', event => {
+//     console.log("INSTALL");
+//     skipWaiting();
+// });
+
+addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        skipWaiting();
+    }
+});
 
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST);

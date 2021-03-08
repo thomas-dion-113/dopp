@@ -26,6 +26,7 @@ import logo from '../images/dopp_logo_white_h_60.png';
 import logoResp from '../images/dopp_white_h_60.png';
 import profile from '../images/profile.svg';
 import OfflinePage from "./OfflinePage";
+import {messageSW, Workbox} from "workbox-window";
 
 class App extends Component {
 
@@ -43,26 +44,36 @@ class App extends Component {
         };
 
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register(process.env.SITE_URL + '/sw.js').then(() => {
-                    return navigator.serviceWorker.ready;
-                }).then(() => {
+            const wb = new Workbox(process.env.SITE_URL + '/sw.js');
+            let registration;
+
+            const showSkipWaitingPrompt = (event) => {
+                wb.addEventListener('controlling', (event) => {
+                    window.location.reload();
+                });
+
+                if (registration && registration.waiting) {
+                    messageSW(registration.waiting, {type: 'SKIP_WAITING'});
+                }
+            };
+
+            wb.addEventListener('waiting', showSkipWaitingPrompt);
+            wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
+
+            wb.register().then((r) => registration = r).then(() => {
+                if (this.state.token) {
+                    this.getUserFromToken();
+                }
+
+                setInterval(function () {
                     if (this.state.token) {
                         this.getUserFromToken();
                     }
+                }.bind(this), 3540000);
 
-                    setInterval(function () {
-                        if (this.state.token) {
-                            this.getUserFromToken();
-                        }
-                    }.bind(this), 3540000);
-
-                    this.setState({loadingSW: false});
-                    this.initNav();
-                });
-            }.bind(this));
-        } else {
-            console.log('Service Worker is not supported by browser.');
+                this.setState({loadingSW: false});
+                this.initNav();
+            });
         }
     }
 
@@ -164,7 +175,7 @@ class App extends Component {
             this.setState({
                 notification: false,
             });
-        }, time*1000);
+        }, time * 1000);
     }
 
     render() {
@@ -245,15 +256,18 @@ class App extends Component {
                                 )}
                             </div>
                         </nav>
-                        <div className={"alert alert-primary alert-dismissible " + (this.state.notification ? "show" : "")}>
-                            <strong>{this.state.notificationTitle}</strong> <span>{this.state.notificationMessage}</span>
+                        <div
+                            className={"alert alert-primary alert-dismissible " + (this.state.notification ? "show" : "")}>
+                            <strong>{this.state.notificationTitle}</strong>
+                            <span>{this.state.notificationMessage}</span>
                             <button type="button" className="close" data-dismiss="alert">&times;</button>
                         </div>
                         <Switch>
                             <Route path="/statistiques">
-                                <Statistiques token={this.state.token} user={this.state.user} notificationCallback={(title, message, time) => {
-                                    this.setNotification(title, message, time)
-                                }}/>
+                                <Statistiques token={this.state.token} user={this.state.user}
+                                              notificationCallback={(title, message, time) => {
+                                                  this.setNotification(title, message, time)
+                                              }}/>
                             </Route>
                             <Route path="/mentions-legales">
                                 <MentionsLegales/>
