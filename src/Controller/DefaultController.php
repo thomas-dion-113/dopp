@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
      */
     public function index(Request $request)
     {
-        if (str_contains($request->getUri(), '.css')) {
+        if (str_contains($request->getUri(), '.css') || str_contains($request->getUri(), '.js')) {
             return new Response(null, 404);
         }
         return $this->render('default/index.html.twig');
