@@ -93,12 +93,16 @@ class App extends Component {
     }
 
     initNav() {
+        console.log("INIT NAV");
         let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
         navLinks.forEach(navLink => {
             navLink.addEventListener('touchend', () => {
+                console.log("HIDE NAVBAR 0");
                 setTimeout(() => {
+                    console.log("HIDE NAVBAR 1");
                     $('.navbar-collapse').collapse('hide');
-                }, 250);
+                    console.log("HIDE NAVBAR 2");
+                }, 150);
             });
         });
     }
