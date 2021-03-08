@@ -54,14 +54,21 @@ class App extends Component {
                     loadingSW: true,
                     maj:true,
                 });
-                console.log(this.state.maj);
+
                 wb.addEventListener('controlling', (event) => {
                     console.log('RELOAD');
-                    window.location.reload();
+                    // window.location.reload();
                 });
 
+                console.log(registration);
+                console.log(registration.waiting);
+                console.log((registration && registration.waiting));
                 if (registration && registration.waiting) {
+                    console.log("messageSW");
                     messageSW(registration.waiting, {type: 'SKIP_WAITING'});
+                    console.log("END messageSW");
+                } else {
+                    console.log("ERROR");
                 }
 
                 console.log('END UPDATE');
