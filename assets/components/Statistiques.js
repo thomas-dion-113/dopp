@@ -28,6 +28,10 @@ class Statistiques extends Component {
         };
     }
 
+    componentWillUnmount() {
+        $('input[name="custom-dates"]').data('daterangepicker').remove();
+    }
+
     componentDidMount() {
         this.initDateRangePicker();
 

@@ -28,6 +28,7 @@ class Home extends Component {
 
     componentWillUnmount() {
         document.querySelector('html').classList.remove('home');
+        $('input[name="custom-field"]').data('daterangepicker').remove();
     }
 
     componentDidMount() {
