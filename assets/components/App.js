@@ -36,6 +36,7 @@ class App extends Component {
         this.state = {
             tokenRequest: localStorage.getItem('token') ? false : true,
             loadingSW: true,
+            maj: false,
             token: JSON.parse(localStorage.getItem('token')),
             user: null,
             notification: false,
@@ -49,7 +50,10 @@ class App extends Component {
 
             const showSkipWaitingPrompt = (event) => {
                 console.log('UPDATE');
-                this.setState({loadingSW: true});
+                this.setState({
+                    loadingSW: true,
+                    maj:true,
+                });
                 wb.addEventListener('controlling', (event) => {
                     console.log('RELOAD');
                     window.location.reload();
@@ -347,10 +351,13 @@ class App extends Component {
                         </Switch>
                     </>
                 ) : (
-                    <div className="container d-flex">
+                    <div className="container d-flex flex-column align-items-center">
                         <div className="spinner-border m-auto" role="status">
                             <span className="sr-only">Loading...</span>
                         </div>
+                        {this.state.maj && (
+                            <h1 className="mt-5">Mise à jour...</h1>
+                        )}
                     </div>
                 )}
             </div>
