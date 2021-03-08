@@ -71,12 +71,13 @@ class App extends Component {
     }
 
     initNav() {
-        let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
-        navLinks.forEach(navLink => {
-            navLink.addEventListener('touchend', () => {
-                $('.navbar-collapse').collapse('hide');
-            });
-        });
+        // console.log("INIT NAV");
+        // let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
+        // navLinks.forEach(navLink => {
+        //     navLink.addEventListener('touchend', () => {
+        //         $('.navbar-collapse').collapse('hide');
+        //     });
+        // });
     }
 
     async getUserFromToken() {
