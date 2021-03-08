@@ -49,6 +49,7 @@ class App extends Component {
 
             const showSkipWaitingPrompt = (event) => {
                 console.log('UPDATE');
+                this.setState({loadingSW: true});
                 wb.addEventListener('controlling', (event) => {
                     console.log('RELOAD');
                     window.location.reload();

@@ -1,5 +1,5 @@
 import {registerRoute, setCatchHandler} from "workbox-routing";
-import {matchPrecache, precacheAndRoute} from "workbox-precaching";
+import {cleanupOutdatedCaches, matchPrecache, precacheAndRoute} from "workbox-precaching";
 import {BackgroundSyncPlugin} from 'workbox-background-sync';
 
 import {
@@ -24,7 +24,19 @@ import {clientsClaim, skipWaiting} from "workbox-core";
 
 addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
-        skipWaiting();
+        // console.log("SKIP WAINTING");
+        // skipWaiting();
+        // console.log("CLEANUP OUTDATED CACHES");
+        // cleanupOutdatedCaches();
+        console.log("CLEANUP WITHOUT WORKBOX");
+        caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                return caches.delete(key);
+            }));
+        }).then(() => {
+            console.log("SKIP WAINTING");
+            skipWaiting();
+        });
     }
 });
 
