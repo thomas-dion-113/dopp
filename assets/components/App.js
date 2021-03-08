@@ -79,6 +79,7 @@ class App extends Component {
                 setTimeout(() => {
                     console.log("HIDE NAVBAR 1");
                     $('.navbar-collapse').collapse('hide');
+                    $('.navbar-collapse').css('color', 'initial');
                     console.log("HIDE NAVBAR 2");
                 }, 500)
             });
