@@ -57,7 +57,7 @@ class App extends Component {
 
                 wb.addEventListener('controlling', (event) => {
                     console.log('RELOAD');
-                    // window.location.reload();
+                    window.location.reload();
                 });
 
                 console.log(registration);
@@ -108,7 +108,7 @@ class App extends Component {
                 console.log("HIDE NAVBAR 0");
                 setTimeout(() => {
                     console.log("HIDE NAVBAR 1");
-                    // $('.navbar-collapse').collapse('hide');
+                    $('.navbar-collapse').collapse('hide');
                     console.log("HIDE NAVBAR 2");
                 }, 50);
             });
