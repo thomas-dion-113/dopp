@@ -3,14 +3,40 @@
   "name": "DOPP",
   "icons": [
     {
+      "src": "/static_images/dopp_white_120.png",
+      "type": "image/png",
+      "sizes": "120x120",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static_images/dopp_white_152.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static_images/dopp_white_167.png",
+      "type": "image/png",
+      "sizes": "167x167",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static_images/dopp_white_180.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/static_images/dopp_white_192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "/static_images/dopp_white_512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
