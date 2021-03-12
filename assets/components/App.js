@@ -122,6 +122,7 @@ class App extends Component {
                 setTimeout(() => {
                     console.log("HIDE NAVBAR 1");
                     $('.navbar-collapse').collapse('hide');
+                    $('.navbar-collapse').show();
                     console.log("HIDE NAVBAR 2");
                 }, 50);
             });
