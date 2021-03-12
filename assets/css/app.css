@@ -62,4 +62,8 @@
     .alert {
         right: 1em;
     }
+
+    .alert strong {
+        margin-right: 0.5em;
+    }
 }

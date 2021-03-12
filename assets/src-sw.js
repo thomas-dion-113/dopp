@@ -1,5 +1,5 @@
 import {registerRoute, setCatchHandler} from "workbox-routing";
-import {cleanupOutdatedCaches, matchPrecache, precacheAndRoute} from "workbox-precaching";
+import {matchPrecache, precacheAndRoute} from "workbox-precaching";
 import {BackgroundSyncPlugin} from 'workbox-background-sync';
 
 import {
@@ -13,32 +13,8 @@ import {CacheableResponsePlugin} from 'workbox-cacheable-response';
 import {ExpirationPlugin} from 'workbox-expiration';
 import {clientsClaim, skipWaiting} from "workbox-core";
 
-// console.log("INSTALL");
 skipWaiting();
 clientsClaim();
-
-// addEventListener('install', event => {
-//     console.log("INSTALL");
-//     skipWaiting();
-// });
-
-// addEventListener('message', (event) => {
-//     if (event.data && event.data.type === 'SKIP_WAITING') {
-//         // console.log("SKIP WAINTING");
-//         // skipWaiting();
-//         // console.log("CLEANUP OUTDATED CACHES");
-//         // cleanupOutdatedCaches();
-//         console.log("CLEANUP WITHOUT WORKBOX");
-//         caches.keys().then(function(keyList) {
-//             return Promise.all(keyList.map(function(key) {
-//                 return caches.delete(key);
-//             }));
-//         }).then(() => {
-//             console.log("SKIP WAINTING");
-//             skipWaiting();
-//         });
-//     }
-// });
 
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST);

@@ -26,7 +26,6 @@ import logo from '../images/dopp_logo_white_h_60.png';
 import logoResp from '../images/dopp_white_h_60.png';
 import profile from '../images/profile.svg';
 import OfflinePage from "./OfflinePage";
-import {messageSW, Workbox} from "workbox-window";
 
 class App extends Component {
 
@@ -35,65 +34,12 @@ class App extends Component {
 
         this.state = {
             tokenRequest: localStorage.getItem('token') ? false : true,
-            loadingSW: false,
-            maj: false,
             token: JSON.parse(localStorage.getItem('token')),
             user: null,
             notification: false,
             notificationTitle: '',
             notificationMessage: '',
         };
-
-        // if ('serviceWorker' in navigator) {
-        //     const wb = new Workbox(process.env.SITE_URL + '/sw.js');
-        //     let registration;
-        //
-        //     const showSkipWaitingPrompt = (event) => {
-        //         console.log('UPDATE');
-        //         this.setState({
-        //             loadingSW: true,
-        //             maj:true,
-        //         });
-        //
-        //         wb.addEventListener('controlling', (event) => {
-        //             console.log('RELOAD');
-        //             window.location.reload();
-        //         });
-        //
-        //         console.log(registration);
-        //         console.log(registration.waiting);
-        //         console.log((registration && registration.waiting));
-        //         if (registration && registration.waiting) {
-        //             console.log("messageSW");
-        //             messageSW(registration.waiting, {type: 'SKIP_WAITING'});
-        //             console.log("END messageSW");
-        //         } else {
-        //             console.log("ERROR");
-        //         }
-        //
-        //         console.log('END UPDATE');
-        //     };
-        //
-        //     wb.addEventListener('waiting', showSkipWaitingPrompt);
-        //     wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
-        //
-        //     console.log('REGISTER');
-        //     wb.register().then((r) => registration = r).then(() => {
-        //         if (this.state.token) {
-        //             this.getUserFromToken();
-        //         }
-        //
-        //         setInterval(function () {
-        //             if (this.state.token) {
-        //                 this.getUserFromToken();
-        //             }
-        //         }.bind(this), 3540000);
-        //
-        //         this.setState({loadingSW: false});
-        //         this.initNav();
-        //         console.log('END REGISTER');
-        //     });
-        // }
 
         if (this.state.token) {
             this.getUserFromToken();
@@ -105,7 +51,6 @@ class App extends Component {
             }
         }.bind(this), 3540000);
 
-        // this.setState({loadingSW: false});
         this.initNav();
     }
 
@@ -114,18 +59,11 @@ class App extends Component {
     }
 
     initNav() {
-        console.log("INIT NAV");
         let navLinks = document.querySelectorAll('nav .navbar-brand, nav .nav-link:not(#navbarDropdown), nav .nav-item .btn');
         navLinks.forEach(navLink => {
             navLink.addEventListener('touchend', () => {
-                console.log("HIDE NAVBAR 0");
                 setTimeout(() => {
-                    console.log("HIDE NAVBAR 1");
                     $('.navbar-collapse').collapse('hide');
-                    $('.navbar-collapse').show();
-                    $('.navbar-collapse').css('border', 'none');
-                    $('.navbar-collapse').css('background-color', 'black');
-                    console.log("HIDE NAVBAR 2");
                 }, 50);
             });
         });
@@ -216,7 +154,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                {this.state.tokenRequest && !this.state.loadingSW ? (
+                {this.state.tokenRequest ? (
                     <>
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                             <Link className={"navbar-brand"} to={"/"}>
@@ -383,9 +321,6 @@ class App extends Component {
                         <div className="spinner-border m-auto" role="status">
                             <span className="sr-only">Loading...</span>
                         </div>
-                        {this.state.maj && (
-                            <h1 className="mt-5">Mise à jour...</h1>
-                        )}
                     </div>
                 )}
             </div>
