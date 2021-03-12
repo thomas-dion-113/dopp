@@ -35,7 +35,7 @@ class App extends Component {
 
         this.state = {
             tokenRequest: localStorage.getItem('token') ? false : true,
-            loadingSW: true,
+            loadingSW: false,
             maj: false,
             token: JSON.parse(localStorage.getItem('token')),
             user: null,
@@ -105,7 +105,7 @@ class App extends Component {
             }
         }.bind(this), 3540000);
 
-        this.setState({loadingSW: false});
+        // this.setState({loadingSW: false});
         this.initNav();
     }
 
