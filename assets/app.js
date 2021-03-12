@@ -19,7 +19,7 @@ import App from './components/App';
 
 ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
 
-console.log('toto1');
+console.log('toto2');
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {

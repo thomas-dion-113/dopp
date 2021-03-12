@@ -124,7 +124,7 @@ class App extends Component {
                     $('.navbar-collapse').collapse('hide');
                     $('.navbar-collapse').show();
                     $('.navbar-collapse').css('border', 'none');
-                    $('.navbar-collapse').css('background-color', 'blue');
+                    $('.navbar-collapse').css('background-color', 'black');
                     console.log("HIDE NAVBAR 2");
                 }, 50);
             });
