@@ -41,6 +41,7 @@ if ('serviceWorker' in navigator) {
 
     const showSkipWaitingPrompt = (event) => {
         console.log('UPDATE');
+        console.log(event);
         wb.addEventListener('controlling', (event) => {
             console.log('RELOAD');
             // window.location.reload();
