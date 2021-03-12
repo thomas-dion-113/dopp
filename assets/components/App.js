@@ -44,56 +44,69 @@ class App extends Component {
             notificationMessage: '',
         };
 
-        if ('serviceWorker' in navigator) {
-            const wb = new Workbox(process.env.SITE_URL + '/sw.js');
-            let registration;
+        // if ('serviceWorker' in navigator) {
+        //     const wb = new Workbox(process.env.SITE_URL + '/sw.js');
+        //     let registration;
+        //
+        //     const showSkipWaitingPrompt = (event) => {
+        //         console.log('UPDATE');
+        //         this.setState({
+        //             loadingSW: true,
+        //             maj:true,
+        //         });
+        //
+        //         wb.addEventListener('controlling', (event) => {
+        //             console.log('RELOAD');
+        //             window.location.reload();
+        //         });
+        //
+        //         console.log(registration);
+        //         console.log(registration.waiting);
+        //         console.log((registration && registration.waiting));
+        //         if (registration && registration.waiting) {
+        //             console.log("messageSW");
+        //             messageSW(registration.waiting, {type: 'SKIP_WAITING'});
+        //             console.log("END messageSW");
+        //         } else {
+        //             console.log("ERROR");
+        //         }
+        //
+        //         console.log('END UPDATE');
+        //     };
+        //
+        //     wb.addEventListener('waiting', showSkipWaitingPrompt);
+        //     wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
+        //
+        //     console.log('REGISTER');
+        //     wb.register().then((r) => registration = r).then(() => {
+        //         if (this.state.token) {
+        //             this.getUserFromToken();
+        //         }
+        //
+        //         setInterval(function () {
+        //             if (this.state.token) {
+        //                 this.getUserFromToken();
+        //             }
+        //         }.bind(this), 3540000);
+        //
+        //         this.setState({loadingSW: false});
+        //         this.initNav();
+        //         console.log('END REGISTER');
+        //     });
+        // }
 
-            const showSkipWaitingPrompt = (event) => {
-                console.log('UPDATE');
-                this.setState({
-                    loadingSW: true,
-                    maj:true,
-                });
-
-                wb.addEventListener('controlling', (event) => {
-                    console.log('RELOAD');
-                    window.location.reload();
-                });
-
-                console.log(registration);
-                console.log(registration.waiting);
-                console.log((registration && registration.waiting));
-                if (registration && registration.waiting) {
-                    console.log("messageSW");
-                    messageSW(registration.waiting, {type: 'SKIP_WAITING'});
-                    console.log("END messageSW");
-                } else {
-                    console.log("ERROR");
-                }
-
-                console.log('END UPDATE');
-            };
-
-            wb.addEventListener('waiting', showSkipWaitingPrompt);
-            wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
-
-            console.log('REGISTER');
-            wb.register().then((r) => registration = r).then(() => {
-                if (this.state.token) {
-                    this.getUserFromToken();
-                }
-
-                setInterval(function () {
-                    if (this.state.token) {
-                        this.getUserFromToken();
-                    }
-                }.bind(this), 3540000);
-
-                this.setState({loadingSW: false});
-                this.initNav();
-                console.log('END REGISTER');
-            });
+        if (this.state.token) {
+            this.getUserFromToken();
         }
+
+        setInterval(function () {
+            if (this.state.token) {
+                this.getUserFromToken();
+            }
+        }.bind(this), 3540000);
+
+        this.setState({loadingSW: false});
+        this.initNav();
     }
 
     componentDidMount() {
