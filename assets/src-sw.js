@@ -61,6 +61,14 @@ registerRoute(
 
 registerRoute(
     ({url}) => url.origin === process.env.SITE_URL && (
+        url.pathname.startsWith('/api/private/last_releve/')
+    ),
+    new NetworkOnly(),
+    'GET'
+);
+
+registerRoute(
+    ({url}) => url.origin === process.env.SITE_URL && (
         url.pathname.startsWith('/api/')
     ),
     new NetworkFirst({
