@@ -52,12 +52,11 @@ class App extends Component {
         }.bind(this), 3540000);
 
         this.initNav();
-
-        $('.navbar').css('background-color', 'red');
     }
 
     componentDidMount() {
         this.initNav();
+        $('.navbar-brand').css('background-color', 'red');
     }
 
     initNav() {
