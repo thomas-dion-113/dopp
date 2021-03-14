@@ -52,6 +52,8 @@ class App extends Component {
         }.bind(this), 3540000);
 
         this.initNav();
+
+        $('.navbar').css('background-color', 'red');
     }
 
     componentDidMount() {
@@ -64,7 +66,6 @@ class App extends Component {
             navLink.addEventListener('touchend', () => {
                 setTimeout(() => {
                     $('.navbar-collapse').collapse('hide');
-                    $('.navbar-collapse').css('background-color', 'red');
                 }, 50);
             });
         });
