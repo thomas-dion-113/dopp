@@ -56,7 +56,6 @@ class App extends Component {
 
     componentDidMount() {
         this.initNav();
-        $('.navbar-brand').css('background-color', 'red');
     }
 
     initNav() {
