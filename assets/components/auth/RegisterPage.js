@@ -75,6 +75,7 @@ class RegisterPage extends Component {
                             email: '',
                             password: '',
                             passwordRepeat: '',
+                            acceptMail: false,
                         }}
                         validate={this.validate}
                         validationSchema={
@@ -89,6 +90,7 @@ class RegisterPage extends Component {
                                 passwordRepeat: Yup.string()
                                     .oneOf([Yup.ref('password'), null], 'Les mots de passes doivent être identiques')
                                     .required(),
+                                acceptMail: Yup.boolean()
                             })}
                         onSubmit={this.handlerSubmit.bind(this)}
                     >
@@ -161,6 +163,23 @@ class RegisterPage extends Component {
                                             />
                                             {props.errors.passwordRepeat && props.touched.passwordRepeat &&
                                             <div id="feedback">{props.errors.passwordRepeat}</div>}
+                                        </div>
+                                        <div
+                                            className={props.errors.acceptMail && props.touched.acceptMail
+                                                ? "form-group form-group-checkbox error"
+                                                : "form-group form-group-checkbox"}>
+                                            <input
+                                                id="acceptMail"
+                                                type="checkbox"
+                                                name="acceptMail"
+                                                onChange={props.handleChange}
+                                                onBlur={props.handleBlur}
+                                                value={props.values.acceptMail}
+                                                className="form-control"
+                                            />
+                                            <label htmlFor="acceptMail">J'accepte de recevoir des emails de la part de DOPP</label>
+                                            {props.errors.acceptMail && props.touched.acceptMail &&
+                                            <div id="feedback">{props.errors.acceptMail}</div>}
                                         </div>
                                         <div className="d-inline-flex">
                                             <button className="btn btn-primary mr-4" type="submit">Valider

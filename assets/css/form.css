@@ -22,6 +22,16 @@
     max-width: 400px;
 }
 
+.form-group-checkbox {
+    display: flex;
+}
+
+.form-group-checkbox input {
+    flex: 1;
+    min-width: 1em;
+    margin-right: 1em;
+}
+
 /* DATE */
 
 .MuiFormControl-root {
