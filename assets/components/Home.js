@@ -119,6 +119,7 @@ class Home extends Component {
 
                     this.map.fitBounds(this.markerGroup.getBounds(), {
                         maxZoom: 13,
+                        padding: [50, 50],
                     });
                     document.querySelector('.container-map').classList.remove('loading');
                 } else {
