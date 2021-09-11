@@ -54,7 +54,7 @@ class Home extends Component {
             zoomOffset: -1,
         }).addTo(this.map);
 
-        this.markerGroup = L.layerGroup().addTo(this.map);
+        this.markerGroup = L.featureGroup().addTo(this.map);
 
         this.map.zoomControl.setPosition('bottomright');
 
@@ -115,6 +115,10 @@ class Home extends Component {
                         })
                             .bindPopup(this.getPopupContent(pluvio))
                             .addTo(this.markerGroup);
+                    });
+
+                    this.map.fitBounds(this.markerGroup.getBounds(), {
+                        maxZoom: 13,
                     });
                     document.querySelector('.container-map').classList.remove('loading');
                 } else {
