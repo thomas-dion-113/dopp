@@ -59,7 +59,7 @@
     margin-left: 0.5em;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 376px) {
     .rotate {
         display: flex;
     }
