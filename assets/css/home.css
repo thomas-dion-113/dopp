@@ -32,6 +32,10 @@ html.home #root > div {
     display: none !important;
 }
 
+.container-map.other-settings-opened .container-loading {
+    padding-left: 365px;
+}
+
 #home-map {
     position: absolute;
     top: 0;
@@ -60,6 +64,10 @@ html.home #root > div {
     color: #000000;
 }
 
+#home-map .leaflet-top {
+    bottom: 0;
+}
+
 .info, .settings {
     font: 14px/16px Arial, Helvetica, sans-serif;
     border-radius: 3px;
@@ -83,13 +91,29 @@ html.home #root > div {
     flex-direction: column;
 }
 
+.container-map.other-settings-opened .settings {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+}
+
+.settings .settings-menu {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
 .settings .current-setting {
-    padding: 0.65em 2.3em 0.65em 2.4em;
+    padding: 0.65em 1.5em 0.65em 2em;
     background-size: 27px, 17px !important;
     cursor: pointer;
-    background: url("../images/calendar.svg") no-repeat scroll 0.5em 50%, url("../images/down-arrow-simple.svg") no-repeat scroll right 0.8em center #ffffff;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    text-align: center;
+    min-width: 14.5em;
+    height: 1.9em;
+    line-height: 0.6em;
+    background: url("../images/calendar.svg") no-repeat scroll 0.4em 50%, url("../images/down-arrow-simple.svg") no-repeat scroll right 0.35em center;
     transition: all ease-in-out 150ms;
 }
 
@@ -117,9 +141,8 @@ html.home #root > div {
     cursor: pointer;
 }
 
-.settings .current-setting:hover,
-.settings .settings-choices span.active:not(.disable),
-.settings .settings-choices span:hover:not(.disable) {
+.settings .settings-menu .other-settings.active,
+.settings .settings-choices span.active:not(.disable) {
     background-color: #007bff !important;
     transition: all ease 300ms;
 }
@@ -147,11 +170,129 @@ html.home #root > div {
     transition: all ease 300ms;
 }
 
+.settings .vertical-separator {
+    border-left: 1px solid #afafaf;
+    height: 1.5em;
+}
+
+.settings .horizontal-separator {
+    background-color: rgb(245, 245, 245);
+    height: 10px;
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #e8eaed;
+    border-top: 1px solid #e8eaed;
+    margin: 1em 0;
+}
+
+.settings .settings-menu .other-settings {
+    display: flex;
+    background: url("../images/settings.svg") center center/74% no-repeat;
+    cursor: pointer;
+    width: 1.9em;
+    height: 1.9em;
+    transition: all ease-in-out 150ms;
+}
+
+.container-other-settings {
+    position: absolute;
+    transform: scale(0, 0);
+    transform-origin: top;
+    background-color: white;
+    padding: 2em 0 0;
+    border-bottom-right-radius: 3px;
+    z-index: -1;
+    top: -0.5em;
+    left: -0.5em;
+    bottom: 0;
+    width: 17.5em;
+    opacity: 0;
+    transition: all ease 400ms;
+}
+
+.container-other-settings.active {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: all ease 400ms;
+}
+
+.container-other-settings .item {
+    padding: 0 1em;
+}
+
+.container-other-settings .item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1em;
+}
+
+.container-other-settings .item .container-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-other-settings .item .container-switch .container-switch-label {
+    display: flex;
+    align-items: center;
+}
+
+.container-other-settings .item .container-switch .container-switch-label .custom-help {
+    background-color: #007bff;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all ease-in-out 150ms;
+}
+
+.container-other-settings .item .container-switch .container-switch-label .custom-help:hover {
+    background-color: #0069d9;
+    transition: all ease 300ms;
+}
+
+.container-other-settings .item .container-switch .switch-label {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all ease-in-out 150ms;
+}
+
+.container-other-settings .item .container-switch .switch-label.active,
+.container-other-settings .item .container-switch .switch-label:hover {
+    text-shadow: 0px 0px 1px black;
+    transition: all ease 300ms;
+}
+
+.container-other-settings .close-other-settings {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: 17px, 17px !important;
+    background: url("../images/up-arrow-simple.svg") no-repeat scroll 27% 50%, rgb(245, 245, 245) url("../images/up-arrow-simple.svg") no-repeat scroll right 27% center;
+    text-align: center;
+    padding: 0.5em 0;
+    margin-top: 1em;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all ease-in-out 150ms;
+}
+
+.container-other-settings .close-other-settings:hover {
+    background-color: #a5a5a5;
+    transition: all ease 300ms;
+}
+
 .legend {
     line-height: 18px;
     color: #555;
     border-color: #999999;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .legend .content, .legend .title {
@@ -170,41 +311,102 @@ html.home #root > div {
     opacity: 0.7;
 }
 
-@media (max-width: 576px) {
+@media (hover: hover) {
+    .settings .settings-menu .current-setting:hover,
+    .settings .settings-menu .other-settings:hover,
+    .settings .settings-choices span:hover:not(.disable) {
+        background-color: #007bff !important;
+        transition: all ease 300ms;
+    }
+}
+
+@media (min-width: 576px) {
+    .container-map .leaflet-left.leaflet-bottom {
+        transition: all ease 400ms;
+    }
+
+    .container-map.other-settings-opened .leaflet-left.leaflet-bottom {
+        left: 30.5em;
+        transition: all ease 400ms;
+    }
+}
+
+@media (max-width: 375px) {
     .leaflet-control-zoom {
         display: none;
+    }
+
+    #home-map .leaflet-top.leaflet-left {
+        bottom: 0;
+        right: 0;
+        z-index: 10002;
     }
 
     #home-map .leaflet-bottom.leaflet-right {
         max-width: 16em;
     }
 
-    #home-map .leaflet-top.leaflet-left {
-        right: 0;
-        z-index: 10002;
-    }
-
     .settings {
         margin: 0 !important;
-        width: 100%;
+        position: absolute !important;
+        top: 0;
+        right: 0;
+        left: 0;
     }
 
-    .settings .current-setting,
-    .settings .settings-choices span {
-        font-size: 1.2rem;
-        text-align: center;
+    .container-map.other-settings-opened .settings {
+        z-index: 10003;
+    }
+
+    /*.container-map.other-settings-opened .leaflet-control-attribution {*/
+    /*    display: none;*/
+    /*}*/
+
+    .settings .settings-menu {
+        border-radius: 0;
+        min-height: 37px;
+        z-index: 10005;
     }
 
     .settings .current-setting {
-        border-radius: 0;
+        flex: 1;
+        min-width: auto;
+    }
+
+    .settings .settings-choices {
+        z-index: 10006;
+    }
+
+    .settings .container-other-settings {
+        width: 100%;
+        left: 0;
+        z-index: 10004;
+    }
+
+    .modal-backdrop {
+        z-index: 10007;
+    }
+
+    .modal {
+        z-index: 10008;
+    }
+}
+
+@media (max-width: 320px) {
+    .settings .current-setting {
+        font-size: 1.1rem;
     }
 
     .settings .settings-choices span {
-        padding: 1.25em 0.5em;
+        padding: 0.75em 0.5em;
         border-bottom: 1px solid grey;
     }
 
     .settings .settings-choices #container-custom-field input {
         margin: auto;
+    }
+
+    .container-other-settings .item .container-switch .switch-label {
+        font-size: 0.9rem;
     }
 }

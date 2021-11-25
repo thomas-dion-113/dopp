@@ -123,6 +123,12 @@ class ReleveController extends AbstractController
             case 'last_7_d':
                 $date->sub(new \DateInterval('P7D'));
                 break;
+            case 'last_15_d':
+                $date->sub(new \DateInterval('P15D'));
+                break;
+            case 'last_30_d':
+                $date->sub(new \DateInterval('P30D'));
+                break;
         }
 
         $em = $this->getDoctrine()->getManager();

@@ -18,16 +18,16 @@ import App from './components/App';
 
 ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register(process.env.SITE_URL + '/sw.js').then(function(registration) {
-            console.log('Worker registration successful', registration.scope);
-        }, function(err) {
-            console.log('Worker registration failed', err);
-        }).catch(function(err) {
-            console.log(err);
-        });
-    });
-} else {
-    console.log('Service Worker is not supported by browser.');
-}
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', function() {
+//         navigator.serviceWorker.register(process.env.SITE_URL + '/sw.js').then(function(registration) {
+//             console.log('Worker registration successful', registration.scope);
+//         }, function(err) {
+//             console.log('Worker registration failed', err);
+//         }).catch(function(err) {
+//             console.log(err);
+//         });
+//     });
+// } else {
+//     console.log('Service Worker is not supported by browser.');
+// }
