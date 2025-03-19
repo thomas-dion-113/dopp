@@ -38,6 +38,10 @@ doctrine:
                 cast: DoctrineExtensions\Query\Mysql\Cast
                 date: DoctrineExtensions\Query\Mysql\Date
                 day: DoctrineExtensions\Query\Mysql\Day
+                week: DoctrineExtensions\Query\Mysql\Week
+                month: DoctrineExtensions\Query\Mysql\Month
+                year: DoctrineExtensions\Query\Mysql\Year
+                round: DoctrineExtensions\Query\Mysql\Round
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
                 datediff: DoctrineExtensions\Query\Mysql\DateDiff
                 convert_tz: DoctrineExtensions\Query\Mysql\ConvertTz
