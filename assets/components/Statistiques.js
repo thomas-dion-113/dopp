@@ -155,7 +155,10 @@ class Statistiques extends Component {
     }
 
     enumerateYearsBetweenYearsNumbers(startYear, endYear) {
+        console.log(startYear, endYear);
         var years = [];
+
+        startYear += 1;
 
         var i = startYear;
 
